@@ -17,5 +17,7 @@ public class Fecha {
         Fecha F = new Fecha(22, 5, 2015);
         MuestraFechaNEspanyiol MFNE = new MuestraFechaNEspanyiol();
         MFNE.mostrar(F);
+        MuestraFecha MF = new MuestraFecha();
+        MF.mostrar(F);
     }
 }
