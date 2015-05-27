@@ -11,6 +11,6 @@ package programacionavanzadamarzojulio2015.interfacesimple;
 public class MuestraFecha  implements Shower{
     public void mostrar(Fecha f){
         System.out.println( f.dia + ", del mes "
-                + f.mes + " del anyio " + f.anyio);
+                + f.mes + " del a" +(char)'ñ' + "o " + f.anyio);
     }
 }

@@ -9,7 +9,8 @@ public class MuestraFechaNEspanyiol implements Shower{
     String NdD[] = {"Lunes", "Martes", "Miercoles", 
         "Jueves", "Viernes", "Sabado", "Domingo"};
     public void mostrar(Fecha f){
-        System.out.println( NdD[(f.dia + 7 - pnm[f.mes - 1]) % 7] + ", del mes "
-                + f.mes + " del anyio " + f.anyio);
+        System.out.println( NdD[(f.dia + 7 - pnm[f.mes - 1]) % 7] + ", "
+                + f.dia + " del mes "
+                + f.mes + " del año " + f.anyio);
     }
 }

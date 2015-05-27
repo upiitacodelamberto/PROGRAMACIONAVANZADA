@@ -14,10 +14,15 @@ public class Fecha {
         dia = d; mes = m; anyio = a;
     }
     public static void main(String[] args) {
-        Fecha F = new Fecha(22, 5, 2015);
+        Fecha F = new Fecha(25, 5, 2015);
         MuestraFechaNEspanyiol MFNE = new MuestraFechaNEspanyiol();
         MFNE.mostrar(F);
+        Shower S = new MuestraFechaNEspanyiol();
+        S.mostrar(F);
+        
         MuestraFecha MF = new MuestraFecha();
         MF.mostrar(F);
+        Shower SMF = new MuestraFecha();
+        SMF.mostrar(F);
     }
 }
