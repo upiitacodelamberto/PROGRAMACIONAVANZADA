@@ -1,0 +1,39 @@
+
+.
+|-- BibliotecaString
+|-- JNI_MyHowTo
+|   |-- JNI_MyHowTo.aux
+|   |-- JNI_MyHowTo.log
+|   |-- JNI_MyHowTo.pdf
+|   |-- JNI_MyHowTo.tex
+|   |-- JNI_MyHowTo.tex.backup
+|   `-- JNI_MyHowTo.tex~
+|-- build.xml
+`-- newpkgroot
+    `-- u4
+        `-- jni00
+            `-- EjemploString.java
+
+5 directories, 8 files
+.
+|-- BibliotecaString
+|-- Build
+|   `-- classes
+|       `-- u4
+|           `-- jni00
+|               `-- EjemploString.class
+|-- JNI_MyHowTo
+|   |-- JNI_MyHowTo.aux
+|   |-- JNI_MyHowTo.log
+|   |-- JNI_MyHowTo.pdf
+|   |-- JNI_MyHowTo.tex
+|   |-- JNI_MyHowTo.tex.backup
+|   `-- JNI_MyHowTo.tex~
+|-- build.xml
+|-- newpkgroot
+|   `-- u4
+|       `-- jni00
+|           `-- EjemploString.java
+`-- temporal.txt
+
+9 directories, 10 files
