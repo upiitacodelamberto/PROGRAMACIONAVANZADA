@@ -6,7 +6,7 @@ public class EjemploString {
             String strToReplace, String replaceString);
     
     static {
-        System.loadLibrary("LibreriaString");
+        System.loadLibrary("BibliotecaString");
     }
     
     public static void main(String[] args) {
