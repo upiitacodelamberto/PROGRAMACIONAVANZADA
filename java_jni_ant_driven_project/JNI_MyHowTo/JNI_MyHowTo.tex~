@@ -3,7 +3,7 @@
 
 %\usepackage[utf8]{inputenc}
 \usepackage[latin1]{inputenc}
-
+\usepackage[spanish]{babel}
 \title{}
 \author{}
 \date{}
@@ -16,8 +16,11 @@
   /Subject  ()
   /Keywords ()
 }
-
+\title{Breve Tutorial sobre cómo usar JNI}
+\author{Lamberto Maza Casas}
+\date{\today}
 \begin{document}
+\maketitle
 %\maketitle
 \section{Crear el código Java}
 \noindent Primero escribimos la clase java EjemploString
@@ -115,6 +118,7 @@ de compilar usando ant deben ser las siguientes:
         `-- jni00
             `-- EjemploString.java
 \end{verbatim}
+\eject
 Después de ejecutar el comando ant compile debemos tener algo como 
 esto:
 \begin{verbatim}
@@ -135,4 +139,96 @@ esto:
 Al ejecutar javah debemos especificar el 
 nombre de la clase (no el nombre del archivo) como primer 
 parámetro.
+Despues necesitamos crear la biblioteca BibliotecaString: 
+Si trabajamos en linux deberemos crear una biblioteca 
+dinámica que deberá llamarse libBibliotecaString.so, y si 
+trabajamos en Windows deberemos crear una biblioteca de 
+enlace dinámico (DLL) que debera llamarse BibliotecaString.dll
+\par
+\noindent En linux podemos usar la herramienta make con el
+siguiente archivo Makefile:
+\begin{verbatim}
+INCLUDE_DIRS:= ./BibliotecaString/include /usr/lib/jvm/java-6-openjdk/include/
+SOURCE_DIRS:= ./BibliotecaString/src/
+CFILES:= bibliotecastring.cpp
+#ASM_FILES:= startup_ARMCM4.S
+INCLUDE_FLAGS:=$(patsubst %,-I%,$(INCLUDE_DIRS))
+#TCHIP=TM4C123GH6PM
+#CC=arm-none-eabi-gcc
+#CC=avr-gcc
+#CC=gcc
+CC=g++
+CFLAGS=-g -Wall -fPIC
+
+#ld -G BibliotecaString/objectfiles/*.o -o BibliotecaString/lib/libBibliotecaString.so -lc -lpthread
+#ld: BibliotecaString/objectfiles/bibliotecastring.o: relocation R_X86_64_PC32 against symbol `_ZN7JNIEnv_17GetStringUTFCharsEP8_jstringPh' can not be used when making a shared object; recompile with -fPIC
+#ld: final link failed: Bad value
+#make: *** [libBibliotecaString.so] Error 1    (2015.07.02)
+
+#CPPFLAGS= $(INCLUDE_FLAGS) -D__AVR_LIBC_DEPRECATED_ENABLE__
+CPPFLAGS= $(INCLUDE_FLAGS)
+vpath %.h $(INCLUDE_DIRS)
+vpath %.cpp *.o $(SOURCE_DIRS)
+COBJECTS:= $(patsubst %.cpp,%.o,$(CFILES))
+
+all: libBibliotecaString.so
+##libBibliotecaString.so: bibliotecastring.cpp
+#libBibliotecaString.so: $(COBJECTS)
+# gcc -c -I/usr/lib/jvm/java-6-openjdk/include/ MyCJavaInterface.c -o MyCJavaInterface.o
+# gcc -c -I MyCJavaInterface.c -o MyCJavaInterface.o
+# ld -G MyCJavaInterface.o -o libMyCJavaInterface.so -lm -lc -lpthread
+$(COBJECTS): %.o: %.cpp
+	mkdir -p BibliotecaString/objectfiles
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o BibliotecaString/objectfiles/$@
+
+libBibliotecaString.so: $(COBJECTS)
+	mkdir -p BibliotecaString/lib
+	ld -G BibliotecaString/objectfiles/*.o -o BibliotecaString/lib/$@ -lc -lpthread 
+
+.PHONY: clean rebuild
+clean:
+	rm -frv BibliotecaString/lib/
+	rm -frv BibliotecaString/objectfiles/
+
+rebuild: clean all
+
+\end{verbatim}
+En windows podemos usar por ejemplo el IDE DevC++ en la version 
+5.11 (32 y 64 bits) para crear la biblioteca DLL. En el DevC++ se crea un 
+proyecto DLL, se escribe el codigo de las funciones C/C++. y se compila 
+para obtener la DLL. Puede que nos marque error(es) como que no encuentra 
+algunoc archivos como jni.h. Hay que buscar en Tools (o Herramientas) las 
+opciones del compilador para agregar directorios como
+\begin{verbatim}
+C:\Program Files\Java\jdk_8u45_algo\include 
+\end{verbatim}
+
+por último, para ejecutar el archivo .class de java desde la línea de 
+comandos debemos hacer lo siguiente:
+\begin{verbatim}
+ cd Build/classes
+ java -Djava.library.path=RutaANuestrabiblioteca pkgname.ClasePrincipal
+\end{verbatim}
+En linux RutaANuestrabiblioteca será la ruta al archivo 
+libBibliotecaString.so, mientras que en windows, RutaANuestrabiblioteca 
+será la ruta al archivo bibliotecaString.dll.\par
+
+\noindent Por otra parte si usamos un IDE como el Netbeans, deberemos
+\begin{verbatim}
+Para ejecutar en el Netbeans de debe agregar en el menu
+run
+   \set project configuration
+                             \customize
+
+donde dice run, en VM option escribir
+-Djava.library.path=rutaparala_biblioteca.dll
+
+o bien en linux
+-Djava.library.path=rutaparala_libbiblioteca.so
+\end{verbatim}
+Este HowTo esta hecho muy a prisa. Pero espero que le sea util a 
+alguien.                (2015.07.02)
+
+
+
 \end{document}

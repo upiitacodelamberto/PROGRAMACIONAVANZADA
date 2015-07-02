@@ -50,7 +50,7 @@ javah (in\-clui\-da en el JDK) para generar un archivo de cabecera.
 Este archivo de cabecera contiene los prototipos de las funciones 
 que deben implementarse en C++. En primer lugar se compila el 
 código java y, a continuación se ejecuta esta he\-rra\-mien\-ta 
-con el archivo class. Opcionalmente ara compilar la clase 
+con el archivo class. Opcionalmente para compilar la clase 
 EjemploString podemos utilizar la herramienta ant con un archivo 
 build.xml como el siguiente:
 \begin{verbatim}
@@ -81,7 +81,7 @@ build.xml como el siguiente:
 
     <target name="jar" depends="compile">
         <mkdir dir="${jar.dir}"/>	
-        <jar destfile="${jar.dir}/${ant.project.name}.jar" basedir="${classes.dir}">
+<jar destfile="${jar.dir}/${ant.project.name}.jar" basedir="${classes.dir}">
             <manifest>
                 <attribute name="Main-Class" value="${main-class}"/>
             </manifest>
@@ -92,8 +92,9 @@ build.xml como el siguiente:
         <java jar="${jar.dir}/${ant.project.name}.jar" fork="true"/>
 <!--
 cd Build/classes/
-java -Djava.library.path=/home/lamberto/workspace/UsoDSocketsEnJava/ Chat
-En el directorio /home/lamberto/workspace/UsoDSocketsEnJava/ debe estar el archivo libMyCJavaInterface.so
+java -Djava.library.path=~/BibliotecaString/   u4.jni00.EjemploString
+En el directorio ~/BibliotecaString/ debe estar el archivo 
+libBibliotecaString.so
 -->
     </target>
 
@@ -103,8 +104,94 @@ En el directorio /home/lamberto/workspace/UsoDSocketsEnJava/ debe estar el archi
 
 </project>
 \end{verbatim}
+Las ubicaciones de los archivos build.xml y EjemploString.java antes 
+de compilar usando ant deben ser las siguientes:
+\begin{verbatim}
+.
+|-- BibliotecaString
+|-- build.xml
+`-- newpkgroot
+    `-- u4
+        `-- jni00
+            `-- EjemploString.java
+\end{verbatim}
+\eject
+Después de ejecutar el comando ant compile debemos tener algo como 
+esto:
+\begin{verbatim}
+.
+|-- BibliotecaString
+|-- Build
+|   `-- classes
+|       `-- u4
+|           `-- jni00
+|               `-- EjemploString.class
+|-- build.xml
+|-- newpkgroot
+    `-- u4
+        `-- jni00
+            `-- EjemploString.java
+\end{verbatim}
 
 Al ejecutar javah debemos especificar el 
 nombre de la clase (no el nombre del archivo) como primer 
 parámetro.
+Despues necesitamos crear la biblioteca BibliotecaString: 
+Si trabajamos en linux deberemos crear una biblioteca 
+dinámica que deberá llamarse libBibliotecaString.so, y si 
+trabajamos en Windows deberemos crear una biblioteca de 
+enlace dinámico (DLL) que debera llamarse BibliotecaString.dll
+\par
+\noindent En linux podemos usar la herramienta make con el
+siguiente archivo Makefile:
+\begin{verbatim}
+INCLUDE_DIRS:= ./BibliotecaString/include /usr/lib/jvm/java-6-openjdk/include/
+SOURCE_DIRS:= ./BibliotecaString/src/
+CFILES:= bibliotecastring.cpp
+#ASM_FILES:= startup_ARMCM4.S
+INCLUDE_FLAGS:=$(patsubst %,-I%,$(INCLUDE_DIRS))
+#TCHIP=TM4C123GH6PM
+#CC=arm-none-eabi-gcc
+#CC=avr-gcc
+#CC=gcc
+CC=g++
+CFLAGS=-g -Wall -fPIC
+
+#ld -G BibliotecaString/objectfiles/*.o -o BibliotecaString/lib/libBibliotecaString.so -lc -lpthread
+#ld: BibliotecaString/objectfiles/bibliotecastring.o: relocation R_X86_64_PC32 against symbol `_ZN7JNIEnv_17GetStringUTFCharsEP8_jstringPh' can not be used when making a shared object; recompile with -fPIC
+#ld: final link failed: Bad value
+#make: *** [libBibliotecaString.so] Error 1    (2015.07.02)
+
+#CPPFLAGS= $(INCLUDE_FLAGS) -D__AVR_LIBC_DEPRECATED_ENABLE__
+CPPFLAGS= $(INCLUDE_FLAGS)
+vpath %.h $(INCLUDE_DIRS)
+vpath %.cpp *.o $(SOURCE_DIRS)
+COBJECTS:= $(patsubst %.cpp,%.o,$(CFILES))
+
+all: libBibliotecaString.so
+##libBibliotecaString.so: bibliotecastring.cpp
+#libBibliotecaString.so: $(COBJECTS)
+# gcc -c -I/usr/lib/jvm/java-6-openjdk/include/ MyCJavaInterface.c -o MyCJavaInterface.o
+# gcc -c -I MyCJavaInterface.c -o MyCJavaInterface.o
+# ld -G MyCJavaInterface.o -o libMyCJavaInterface.so -lm -lc -lpthread
+$(COBJECTS): %.o: %.cpp
+	mkdir -p BibliotecaString/objectfiles
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o BibliotecaString/objectfiles/$@
+
+libBibliotecaString.so: $(COBJECTS)
+	mkdir -p BibliotecaString/lib
+	ld -G BibliotecaString/objectfiles/*.o -o BibliotecaString/lib/$@ -lc -lpthread 
+
+.PHONY: clean rebuild
+clean:
+	rm -frv BibliotecaString/lib/
+	rm -frv BibliotecaString/objectfiles/
+
+rebuild: clean all
+
+\end{verbatim}
+En windows podemos usar por ejemplo el IDE DevC++ en la version 
+5.11 (32 y 64 bits) para crear la biblioteca DLL. En el DevC++ se crea un 
+proyecto DLL, se escribe el codigo de las funciones C/C++. y se compila 
+para obtener la DLL. Pue
 \end{document}
