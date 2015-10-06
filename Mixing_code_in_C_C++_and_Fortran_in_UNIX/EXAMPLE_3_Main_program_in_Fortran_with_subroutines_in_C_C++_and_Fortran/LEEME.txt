@@ -1,0 +1,95 @@
+Example 3: Main Program in FORTRAN, with Subroutines in C, C++, and Fortran
+
+Though the non-FORTRAN subroutines don't have any underscores after their names in the main FORTRAN program, running the nm command on fprogram.o shows that the FORTRAN program expects that they'll have underscores appended to the function name internally. Therefore, in both the C and C++ files, we need to write the function prototype statement accordingly, with an underscore after the function name. We also must use the extern "C" directive in the C++ file, indicating that the C++ function is called with a C-style interface, similar to the first example.
+
+File fprogram.f:
+
+      program fprogram
+      real a,b
+      a=1.0
+      b=2.0
+
+      print*,'Before Fortran function is called:'
+      print*,'a=',a
+      print*,'b=',b
+      call ffunction(a,b)
+      print*,'After Fortran function is called:'
+      print*,'a=',a
+      print*,'b=',b
+
+      print*,'Before C function is called:'
+      print*,'a=',a
+      print*,'b=',b
+      call cfunction(a,b)
+      print*,'After C function is called:'
+      print*,'a=',a
+      print*,'b=',b
+
+      print*,'Before C++ function is called:'
+      print*,'a=',a
+      print*,'b=',b
+      call cppfunction(a,b)
+      print*,'After C++ function is called:'
+      print*,'a=',a
+      print*,'b=',b
+
+      stop
+      end
+
+File ffunction.f:
+
+      subroutine ffunction(a,b)
+      a=3.0
+      b=4.0
+      end
+
+File cppfunction2.C:
+
+    extern "C" {
+      void cppfunction_(float *a, float *b);
+    }
+
+    void cppfunction_(float *a, float *b) {
+      *a=5.0;
+      *b=6.0;
+    }
+
+File cfunction2.c:
+
+    void cfunction_(float *a, float *b) {
+      *a=7.0;
+      *b=8.0;
+    }
+
+Compilation Steps:
+
+    mwr@ch208m:~$ g77 -c fprogram.f
+    mwr@ch208m:~$ g77 -c ffunction.f
+    mwr@ch208m:~$ g++ -c cppfunction2.C
+    mwr@ch208m:~$ gcc -c cfunction2.c
+    mwr@ch208m:~$ g77 -lc -o fprogram fprogram.o ffunction.o cppfunction2.o cfunction2.o
+    mwr@ch208m:~$ 
+
+Results:
+
+    mwr@ch208m:~$ ./fprogram
+     Before Fortran function is called:
+     a=  1.
+     b=  2.
+     After Fortran function is called:
+     a=  3.
+     b=  4.
+     Before C function is called:
+     a=  3.
+     b=  4.
+     After C function is called:
+     a=  7.
+     b=  8.
+     Before C++ function is called:
+     a=  7.
+     b=  8.
+     After C++ function is called:
+     a=  5.
+     b=  6.
+    mwr@ch208m:~$
+

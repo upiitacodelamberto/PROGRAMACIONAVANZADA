@@ -1,0 +1,100 @@
+Example 2: Main Program in C++, with Subroutines in C, C++, and FORTRAN
+
+The only differences between the C++ code in a normal program is that we have to account for the C and FORTRAN subroutines expecting to be called with a C-style interface, and also that the FORTRAN compiler will append an underscore to the FORTRAN function name. Also, since the C++ function is held in a separate file from the C++ main program, we need to declare a function prototype before the main program code.
+
+File cppprogram.C:
+
+    #include <iostream.h>
+
+    extern "C" {
+      void ffunction_(float *a, float *b);
+    }
+
+    extern "C" {
+      void cfunction(float *a, float *b);
+    }
+
+    void cppfunction(float *a, float *b);
+
+    int main() {
+      float a=1.0, b=2.0;
+
+      cout << "Before running Fortran function:" << endl;
+      cout << "a=" << a << endl;
+      cout << "b=" << b << endl;
+
+      ffunction_(&a,&b);
+
+      cout << "After running Fortran function:" << endl;
+      cout << "a=" << a << endl;
+      cout << "b=" << b << endl;
+
+      cout << "Before running C function:" << endl;
+      cout << "a=" << a << endl;
+      cout << "b=" << b << endl;
+
+      cfunction(&a,&b);
+
+      cout << "After running C function:" << endl;
+      cout << "a=" << a << endl;
+      cout << "b=" << b << endl;
+
+      cout << "Before running C++ function:" << endl;
+      cout << "a=" << a << endl;
+      cout << "b=" << b << endl;
+
+      cppfunction(&a,&b);
+
+      cout << "After running C++ function:" << endl;
+      cout << "a=" << a << endl;
+      cout << "b=" << b << endl;
+
+      return 0;
+    }
+
+File cfunction1.c:
+
+    void cfunction(float *a, float *b) {
+      *a=7.0;
+      *b=8.0;
+    }
+
+File ffunction.f:
+
+      subroutine ffunction(a,b)
+      a=3.0
+      b=4.0
+      end
+
+Compilation Steps:
+
+    mwr@ch208m:~$ g++ -c cppprogram.C
+    mwr@ch208m:~$ gcc -c cfunction1.c
+    mwr@ch208m:~$ g++ -c cppfunction1.C
+    mwr@ch208m:~$ g77 -c ffunction.f
+    mwr@ch208m:~$ g++ -o cppprogram cppprogram.o cfunction1.o cppfunction1.o ffunction.o
+    mwr@ch208m:~$ 
+
+Results:
+
+    mwr@ch208m:~$ ./cppprogram
+    Before running Fortran function:
+    a=1
+    b=2
+    After running Fortran function:
+    a=3
+    b=4
+    Before running C function:
+    a=3
+    b=4
+    After running C function:
+    a=7
+    b=8
+    Before running C++ function:
+    a=7
+    b=8
+    After running C++ function:
+    a=5
+    b=6
+    mwr@ch208m:~$
+

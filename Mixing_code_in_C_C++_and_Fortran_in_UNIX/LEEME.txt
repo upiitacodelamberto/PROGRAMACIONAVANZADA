@@ -1,0 +1,50 @@
+http://www.cae.tntech.edu/help/programming/mixed_languages
+
+
+ Mixing Code in C, C++, and FORTRAN on Unix
+It is becoming increasingly common for engineers to write different parts of a final program in different languages. For example, you might use legacy FORTRAN code for calculations, C++ code for writing a graphical interface to the program, and C for other system functions. This page is intended to show simple examples of how to write programs and functions that can be accessed from other languages.
+
+Major points to keep in mind when mixing languages include:
+Call By Value / Call By Reference
+
+C and C++ default to passing arguments by value; FORTRAN defaults to passing arguments by reference. In other words, the normal way that FORTRAN subroutines or functions are called allows them to modify their argument variables inside the subroutine code, while C and C++ do not. C and C++ subroutines use a slightly different syntax to allow for modification of arguments, and this syntax is consistently used in the following examples.
+Splitting Code Into Multiple Files
+
+Normally, as your program code grows larger, you'll want to separate it into several files, one per function or subroutine. Then each source code file is compiled into an object file (a .o file in Unix, or a .obj file in Windows), and the various object files are linked together into a final single executable.
+
+The advantages of splitting your code up this way include:
+
+    Being able to use different languages for different portions of the program
+    Being able to delegate the writing of different functions to different people
+    More efficient compilation, since a change to one source file only requires its object file to be recompiled and the object files to be relinked, rather than recompiling the entire body of code from scratch.
+
+Once you exceed the two or three source code files we use in the following examples, you'll almost definitely want to investigate using the make utility to automate the build process on your program.
+Internal Function Names
+
+When the compiler turns source code into object files, it might change the internal name of the function, for example, by appending or prepending underscores. In Unix, you can use the nm command to list those internal names:
+
+    mwr@ch208m:~$ nm cppfunction.o
+    cppfunction.o:
+
+      [Index]   Value      Size    Type  Bind  Other Shndx   Name
+
+    [2]     |         0|       0|SECT |LOCL |0    |4      |
+    [5]     |         0|       0|SECT |LOCL |0    |2      |
+    [6]     |         0|       0|SECT |LOCL |0    |3      |
+    [4]     |         0|       0|NOTY |LOCL |0    |4      |__FRAME_BEGIN__
+    [7]     |         0|      76|FUNC |GLOB |0    |2      |cppfunction
+    [1]     |         0|       0|FILE |LOCL |0    |ABS    |cppfunction.C
+    [3]     |         0|       0|NOTY |LOCL |0    |2      |gcc2_compiled.
+    mwr@ch208m:~$ nm ffunction.o
+    ffunction.o:
+
+    [Index]   Value      Size    Type  Bind  Other Shndx   Name
+
+    [3]     |         0|       0|SECT |LOCL |0    |2      |
+    [4]     |         0|       0|SECT |LOCL |0    |3      |
+    [1]     |         0|       0|FILE |LOCL |0    |ABS    |ffunction.f
+    [5]     |         0|      68|FUNC |GLOB |0    |2      |ffunction_
+    [2]     |         0|       0|NOTY |LOCL |0    |2      |gcc2_compiled.
+    mwr@ch208m:~$
+
+Note that the FORTRAN compiler appended a single underscore to the function name, while the C++ compiler left the name intact.

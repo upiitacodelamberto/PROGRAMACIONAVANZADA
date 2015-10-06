@@ -1,0 +1,96 @@
+Example 1: Main Program in C, with Subroutines in C, C++, and FORTRAN
+
+The C program is nothing out of the ordinary: it defines two variables, and calls various functions that change those variables' values. C requires that we use a "call by reference" syntax to make these changes persistent, rather than its default "call by value" method. Note that the name of the FORTRAN function called from the C program is ffunction_, a name we extracted via the nm command shown above. Note also that the C++ function has an extern "C" directive above the code of the function, indicating not that cppfunction() is written in C, but that it is called from a C-style interface instead of a C++ interface.
+
+File cprogram.c:
+
+  #include <stdio.h>
+  int main(void) {
+    float a=1.0, b=2.0;
+
+    printf("Before running Fortran function:\n");
+    printf("a=%f\n",a);
+    printf("b=%f\n",b);
+    ffunction_(&a,&b);
+    printf("After running Fortran function:\n");
+    printf("a=%f\n",a);
+    printf("b=%f\n",b);
+
+    printf("Before running C++ function:\n");
+    printf("a=%f\n",a);
+    printf("b=%f\n",b);
+    cppfunction(&a,&b);
+    printf("After running C++ function:\n");
+    printf("a=%f\n",a);
+    printf("b=%f\n",b);
+
+    printf("Before running C function:\n");
+    printf("a=%f\n",a);
+    printf("b=%f\n",b);
+    cfunction(&a,&b);
+    printf("After running C function:\n");
+    printf("a=%f\n",a);
+    printf("b=%f\n",b);
+
+    return 0;
+  }
+
+File ffunction.f:
+
+      subroutine ffunction(a,b)
+      a=3.0
+      b=4.0
+      end
+
+File cppfunction.C:
+
+  extern "C" {
+    void cppfunction(float *a, float *b);
+  }
+
+  void cppfunction(float *a, float *b) {
+    *a=5.0;
+    *b=6.0;
+  }
+
+File cfunction1.c:
+
+  void cfunction(float *a, float *b) {
+    *a=7.0;
+    *b=8.0;
+  }
+
+Compilation Steps: each program is compiled into an object file using the appropriate compiler with the -c flag. After all the object files are created, the final gcc command links the object files together into a single executable:
+
+    mwr@ch208m:~$ gcc -c cprogram.c
+    mwr@ch208m:~$ g77 -c ffunction.f
+    mwr@ch208m:~$ g++ -c cppfunction.C
+    mwr@ch208m:~$ gcc -c cfunction1.c
+    mwr@ch208m:~$ gcc -o cprogram cprogram.o ffunction.o cppfunction.o cfunction1.o
+    mwr@ch208m:~$
+
+Though this example problem does not require it, many of the math functions (for example, sin, cos, pow, etc.) require that you also link in the libm math library. Add a -lm flag to the final gcc command above to link in the math library.
+
+Results:
+
+  mwr@ch208m:~$ ./cprogram
+  Before running Fortran function:
+  a=1.000000
+  b=2.000000
+  After running Fortran function:
+  a=3.000000
+  b=4.000000
+  Before running C++ function:
+  a=3.000000
+  b=4.000000
+  After running C++ function:
+  a=5.000000
+  b=6.000000
+  Before running C function:
+  a=5.000000
+  b=6.000000
+  After running C function:
+  a=7.000000
+  b=8.000000
+  mwr@ch208m:~$
+
