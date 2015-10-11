@@ -1,0 +1,5 @@
+Para compilar basta con usar:
+make main
+
+O bien:
+g++ main.cpp -o main

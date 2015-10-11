@@ -1,4 +1,6 @@
+#include <vector>
 #include "Boleto.h"
+using std::vector;
 
 
 //Boleto::Boleto(const string e){
