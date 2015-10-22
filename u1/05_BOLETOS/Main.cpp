@@ -37,6 +37,15 @@ int main(){
   mostrar_vector(B);
   mostrar_vector(B+1);
 
+  b=new Boleto();
+  b->set_evento(event);
+  agregar(B, 1, b);
+  cout << "/****************************************************/" << endl;
+  mostrar_vector(B+1);
+  cout << b->numdbol << " " <<  b->evento << endl;
+
+  
+
   return 0;
 }
 

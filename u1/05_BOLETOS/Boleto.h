@@ -25,7 +25,9 @@ class Boleto : public Bol{
   static int consecutivo;
 public: 
   int numdbol;
+  Boleto(){ }
   Boleto(string e);
+  void set_evento(string str){ evento=str;}
   static int get_consecutivo(){
     return consecutivo;
   }

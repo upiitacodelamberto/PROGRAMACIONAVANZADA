@@ -6,78 +6,42 @@ using namespace std;
 #include "Boleto.h"
 vector<string> MItem;
 vector<string> Evento;
+vector<Bol *> B;
 Fecha *FECHA;
 
-void mostrar_vector(Bol *);
+void mostrar_vector(vector<Bol *>);
 //void mostrar_Boleto(Boleto *);
-void agregar(Bol *, int, Boleto *);
-void resumen(Bol *, int);
+void agregar(vector<Bol *>&, int, Boleto *);//Note el uso de referencia
+void resumen(vector<Bol *>, int);
 int mostrar_menu();
-void procesar_comandos(Bol *B);
-void generar_Boleto(Bol *P);
-void presentar_Resumen(Bol *P);
+void procesar_comandos(vector<Bol *>);
+void generar_Boleto(vector<Bol *>);
+void presentar_Resumen(vector<Bol *>);
+//void crear_Evento();
+void crear_Evento(vector<Bol*>&, vector<string>&);
 
 int main(){
-//  //Primero un evento para hoy sabado 10 de octubre
-//  Fecha *F=new Fecha(10, 10, 2015);
-//  //Bol *B=new Bol();
-//  Bol *B=new Bol[2];   //Por ahora, desde aqui fijamos B solo para dos eventos.
-//  string event="Guerra de Robots";
-//  B->set_evento(event);
-//
-//  Boleto *b;
-//  b=new Boleto(F);
-//  agregar(B, 0, b);
-//  mostrar_vector(B);
-//
-//  //Se puede no usar agregar(), pero se debe 
-//  //crear un nuevo Boleto y hacer las dos operaciones
-//  //que se hacen en agregar()
-//  b=new Boleto(F);
-//  b->numdbol=B->V.size()+1;
-//  B->V.push_back(b);
-//  mostrar_vector(B);
-//
-//  b=new Boleto(F);
-//  agregar(B, 0, b);
-//  mostrar_vector(B);
-//
-//
-//  //Ahora otro evento para el 1 de noviembre
-//  event="Eleccion de Representantes al CTCE";
-//  (B+1)->set_evento(event);
-//  F=new Fecha(1, 11, 2015);
-//
-//  b=new Boleto(F);
-//  agregar(B, 1, b);
-//
-//  b=new Boleto(F);
-//  agregar(B, 1, b);
-//
-//  b=new Boleto(F);
-//  agregar(B, 1, b);
-//
-//  b=new Boleto(F);
-//  agregar(B, 1, b);
-//  mostrar_vector(B+1);
-//
-//  resumen(B, 2);
+  string evento3="Agregar Evento";
   MItem.push_back("Generar Boleto");
+  MItem.push_back(evento3);
   MItem.push_back("Presentar Resumen");
   MItem.push_back("Salir");
   FECHA=new Fecha(10,10,2015);
   string evento1="Guerra de Robots";
   string evento2="Eleccion de Representantes al CTCE UPIITA";
-  string evento3="Agregar Evento/Por ahora no elija esta opcion!! (2015.10.10)";
   Evento.push_back(evento1);
   Evento.push_back(evento2);
-  Evento.push_back(evento3);
-  Bol *B;
-  B=new Bol[2];
-  B->set_evento(evento1);
-  (B+1)->set_evento(evento2);
+//  Evento.push_back(evento3);
+  //Bol *B;//En lugar de este apuntador usar un vector de Bol *.
+//  B=new Bol[2];
+  B.push_back(new Bol());
+  B.push_back(new Bol());
+//  B->set_evento(evento1);
+  B[0]->set_evento(evento1);
+//  (B+1)->set_evento(evento2);
+  B[1]->set_evento(evento2);
   
-  procesar_comandos(B);
+  procesar_comandos(B);//Debera recibir  un vector<Bol *>
   
   return 0;
 }//end main()
@@ -96,13 +60,16 @@ int mostrar_menu(){
   }while((cho<0)||(cho>=MItem.size()));
   return cho;
 }
-void procesar_comandos(Bol *B){
+void procesar_comandos(vector<Bol *> B){
   int elec;
   do{
     elec=mostrar_menu();
     switch(elec){
       case 0:{generar_Boleto(B);break;}
-      case 1:{presentar_Resumen(B);break;}//Para evitar SEGFAULT hay que llamar a presentar_Resumen()
+      case 1:{cin.ignore(500, '\n');crear_Evento(B, Evento);
+cout << "Despues de crear_Evento():B.size()="<<B.size() << endl;
+      break;}
+      case 2:{presentar_Resumen(B);break;}//Para evitar SEGFAULT hay que llamar a presentar_Resumen()
                                           //solo si para todos los eventos hay al menos un Boleto generado
                                           // o mas bien en presentar_Resumen() antes de imprimir 
                                           //la info del cada evento asegurarse de que hay al menos un boleto
@@ -111,7 +78,7 @@ void procesar_comandos(Bol *B){
     };
   }while(elec!=MItem.size()-1);
 }
-void presentar_Resumen(Bol *P){
+void presentar_Resumen(vector<Bol *>P){
   resumen(P, Evento.size()-1);
 }
 
@@ -138,11 +105,15 @@ void mostrar_vector(Bol *P){
  se va a agregar un Boleto en el vector<Boleto*> V del 
  index-esimo objeto de clase Bol.
  */
-void agregar(Bol *P, int index, Boleto *b){
-  b->numdbol=(P+index)->V.size()+1;
-  (P+index)->V.push_back(b);
+void agregar(vector<Bol *>&P, int index, Boleto *b){
+  //b->numdbol=(P+index)->V.size()+1;
+  cout << "index=" << index <<"P.size()="<< P.size()<<" HERE\n";
+  b->numdbol=P[index]->V.size()+1;
+  cout << "AFTER\n";
+//  (P+index)->V.push_back(b);
+  P[index]->V.push_back(b);
 }
-void generar_Boleto(Bol *P){
+void generar_Boleto(vector<Bol *> P){
   int M;
   Boleto *b;
   cout << "Elija el evento:" << endl;
@@ -162,11 +133,26 @@ ostream& operator<<(ostream& out, Fecha& f){
 /**
   @param n: el numero de eventos para los cuales hay series de boletos.
  */
-void resumen(Bol *P, int n){
+void resumen(vector<Bol *>P, int n){
+  cout <<"/------------------------------------------------------------/\n";
+  cout <<"RESUMEN\n";
   cout << Empresa<string>::str_empresa << endl;
   for(int k=0; k<n; ++k){
-    cout << "Boletos emitidos para el evento (" << *((*((P+k)->V[0])).f) << ") \"" 
-         << (P+k)->evento << "\": " << (P+k)->V.size() << endl;
+    if(P[k]->V.size()){
+      cout << "Boletos emitidos para el evento (" << *((*(P[k]->V[0])).f) << ") \"" 
+           << P[k]->evento << "\": " << P[k]->V.size() << endl;
+    }
   }
   cout << "Total de Boletos emitidos: " << Boleto::get_consecutivo() << endl;
+  cout <<"/------------------------------------------------------------/\n";
+}
+
+void crear_Evento(vector<Bol*>&KB, vector<string>&EVT){
+  string cad;
+  cout << "Teclea el nombre del evento a crear: ";
+  getline(cin, cad);
+  KB.push_back(new Bol());
+  KB[KB.size()-1]->set_evento(cad);
+  EVT.push_back(cad);
+cout << "En crear_Evento():KB.size()="<<KB.size() << endl;
 }
