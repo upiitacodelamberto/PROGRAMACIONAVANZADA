@@ -4,20 +4,30 @@
 #include <ostream>
 using namespace std;
 #include "Boleto.h"
+#define SIN_ARGS
+//#define CON_ARGS
 vector<string> MItem;
 vector<string> Evento;
 vector<Bol *> B;
 Fecha *FECHA;
+int cont=2;
 
-void mostrar_vector(vector<Bol *>);
+//void mostrar_vector(vector<Bol *>);
 //void mostrar_Boleto(Boleto *);
+void agregar(int, Boleto *);//Note el uso de referencia
+string ingresar_nombre();
+void agregar(Bol *);//Note el uso de referencia
 void agregar(vector<Bol *>&, int, Boleto *);//Note el uso de referencia
+void resumen(int);
 void resumen(vector<Bol *>, int);
 int mostrar_menu();
+void procesar_comandos();
 void procesar_comandos(vector<Bol *>);
+void generar_Boleto();
 void generar_Boleto(vector<Bol *>);
+void presentar_Resumen();
 void presentar_Resumen(vector<Bol *>);
-//void crear_Evento();
+void crear_Evento();
 void crear_Evento(vector<Bol*>&, vector<string>&);
 
 int main(){
@@ -31,17 +41,17 @@ int main(){
   string evento2="Eleccion de Representantes al CTCE UPIITA";
   Evento.push_back(evento1);
   Evento.push_back(evento2);
-//  Evento.push_back(evento3);
-  //Bol *B;//En lugar de este apuntador usar un vector de Bol *.
-//  B=new Bol[2];
   B.push_back(new Bol());
   B.push_back(new Bol());
-//  B->set_evento(evento1);
   B[0]->set_evento(evento1);
-//  (B+1)->set_evento(evento2);
   B[1]->set_evento(evento2);
   
-  procesar_comandos(B);//Debera recibir  un vector<Bol *>
+#ifdef CON_ARGS
+  procesar_comandos(B);
+#endif
+#ifdef SIN_ARGS
+  procesar_comandos();
+#endif
   
   return 0;
 }//end main()
@@ -51,8 +61,6 @@ int mostrar_menu(){
   do{
   cout << endl;
   cout << "Teclee un numero que corresponda a un elemento del siguiente menu:" << endl;
-//  for(int i=0; i<MENU<string>::ElemDM.size(); ++i)
-//    cout << i << " " << MENU<string>::ElemDM[i] << endl;
   for(int i=0; i<MItem.size(); ++i)
     cout << i << " " << MItem[i] << endl;
   cout << "Teclee el numero de la opcion elegida: ";
@@ -60,13 +68,29 @@ int mostrar_menu(){
   }while((cho<0)||(cho>=MItem.size()));
   return cho;
 }
+void procesar_comandos(){
+  int elec;
+  do{
+    elec=mostrar_menu();
+    switch(elec){
+      case 0:{generar_Boleto();break;}
+      case 1:{cin.ignore(500, '\n');//crear_Evento();
+crear_Evento();
+cout << "Despues de crear_Evento():B.size()="<<B.size() << endl;
+      break;}
+      case 2:{presentar_Resumen();break;}
+      default:{break;}
+    };
+  }while(elec!=MItem.size()-1);
+}
 void procesar_comandos(vector<Bol *> B){
   int elec;
   do{
     elec=mostrar_menu();
     switch(elec){
       case 0:{generar_Boleto(B);break;}
-      case 1:{cin.ignore(500, '\n');crear_Evento(B, Evento);
+      case 1:{cin.ignore(500, '\n');//crear_Evento(B, Evento);
+crear_Evento();
 cout << "Despues de crear_Evento():B.size()="<<B.size() << endl;
       break;}
       case 2:{presentar_Resumen(B);break;}//Para evitar SEGFAULT hay que llamar a presentar_Resumen()
@@ -78,41 +102,81 @@ cout << "Despues de crear_Evento():B.size()="<<B.size() << endl;
     };
   }while(elec!=MItem.size()-1);
 }
+void presentar_Resumen(){
+  resumen(Evento.size());
+}
 void presentar_Resumen(vector<Bol *>P){
-  resumen(P, Evento.size()-1);
+  resumen(P, Evento.size());
 }
 
 int Boleto::consecutivo=0;
 Boleto::Boleto(Fecha *fec):Producto(fec){
-//  set_fecha(fec);
   consecutivo++;
 }
 void Bol::set_evento(string evt){
   evento=evt;
 }
 
-void mostrar_vector(Bol *P){
-  for(int i=0; i<P->V.size(); ++i)
-    cout << P->V[i]->numdbol << " " << P->evento << " "
-         << (*(P->V[i])).NombreDEmpresa << " " 
-         << *((*(P->V[i])).f) << endl;
-  cout <<  endl;
-}
-//void mostrar_Boleto(Boleto *);
 
+string ingresar_nombre(){
+  string nuevoevento;
+  cout<<"Ingrese el nombre de su evento:";
+  getline(cin,nuevoevento);
+  return nuevoevento;
+}
+void agregar(Bol *B){
+  int a1=Evento.size();
+  string nuevoevento="";
+  do{
+    nuevoevento=ingresar_nombre();
+  }while(nuevoevento=="");
+  Evento.push_back("Regresar a Menu anterior");
+  Evento[a1-1]=nuevoevento;
+  (B+a1-1)->set_evento(nuevoevento);
+}
+void agregar(int index, Boleto *b){
+  cout << "index=" << index <<"B.size()="<< B.size()<<" HERE\n";
+  b->numdbol=B[index]->V.size()+1;
+  cout << "AFTER\n";
+  B[index]->V.push_back(b);
+}
 /**
  @param index: indice que corresponde al evento para el cual 
  se va a agregar un Boleto en el vector<Boleto*> V del 
  index-esimo objeto de clase Bol.
  */
 void agregar(vector<Bol *>&P, int index, Boleto *b){
-  //b->numdbol=(P+index)->V.size()+1;
   cout << "index=" << index <<"P.size()="<< P.size()<<" HERE\n";
   b->numdbol=P[index]->V.size()+1;
   cout << "AFTER\n";
-//  (P+index)->V.push_back(b);
   P[index]->V.push_back(b);
 }
+#ifdef TERCERA_VARIANTE
+void generar_Boleto(){
+  int M;
+  Boleto *b;
+  cout << "Elija el evento:" << endl;
+  for(int i=0; i<Evento.size(); ++i)
+    cout << i << " " << Evento[i] << endl;
+  cout << "Evento elegido: ";
+  cin >> M;
+  b=new Boleto(FECHA);
+  agregar(M, b);
+}
+#endif /* TERCERA_VARIANTE */
+#ifndef TERCERA_VARIANTE
+void generar_Boleto(){
+  int M;
+  Boleto *b;
+  cout << "Elija el evento:" << endl;
+  for(int i=0; i<Evento.size(); ++i)
+    cout << i << " " << Evento[i] << endl;
+  cout << "Evento elegido: ";
+  cin >> M;
+  b=new Boleto(FECHA);
+  agregar(M, b);
+}
+#endif /* TERCERA_VARIANTE */
 void generar_Boleto(vector<Bol *> P){
   int M;
   Boleto *b;
@@ -130,6 +194,19 @@ ostream& operator<<(ostream& out, Fecha& f){
     return out;
 }
 
+void resumen(int n){
+  cout <<"/------------------------------------------------------------/\n";
+  cout <<"RESUMEN\n";
+  cout << Empresa<string>::str_empresa << endl;
+  for(int k=0; k<n; ++k){
+    if(B[k]->V.size()){
+      cout << "Boletos emitidos para el evento (" << *((*(B[k]->V[0])).f) << ") \"" 
+           << B[k]->evento << "\": " << B[k]->V.size() << endl;
+    }
+  }
+  cout << "Total de Boletos emitidos: " << Boleto::get_consecutivo() << endl;
+  cout <<"/------------------------------------------------------------/\n";
+}
 /**
   @param n: el numero de eventos para los cuales hay series de boletos.
  */
@@ -147,6 +224,16 @@ void resumen(vector<Bol *>P, int n){
   cout <<"/------------------------------------------------------------/\n";
 }
 
+void crear_Evento(){
+  string cad;
+  cout << "Teclea el nombre del evento a crear: ";
+  getline(cin, cad);
+  B.push_back(new Bol());
+  //B[B.size()-1]->set_evento(cad);
+  B[cont]->set_evento(cad);
+  Evento.push_back(cad);
+  cont++;
+}
 void crear_Evento(vector<Bol*>&KB, vector<string>&EVT){
   string cad;
   cout << "Teclea el nombre del evento a crear: ";
@@ -154,5 +241,4 @@ void crear_Evento(vector<Bol*>&KB, vector<string>&EVT){
   KB.push_back(new Bol());
   KB[KB.size()-1]->set_evento(cad);
   EVT.push_back(cad);
-cout << "En crear_Evento():KB.size()="<<KB.size() << endl;
 }

@@ -48,12 +48,5 @@ public:
   friend ostream& operator<<(ostream& out, Fecha& f);
 };//end class Fecha
 
-//vector<string> MItem;
-//template <typename T> class MENU{
-//public:
-//  static vector<T> ElemDM; //Pensado para ser un vector<string>
-//};
-//template <typename T>
-//T vector<T>::ElemDM=MItem;
 
 #endif /* _BOLETO_ */
