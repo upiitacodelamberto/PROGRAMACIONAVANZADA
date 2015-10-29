@@ -4,12 +4,12 @@
 #include <ostream>
 using namespace std;
 #include "Boleto.h"
+//#define CON_ARGS
 //#define SIN_ARGS
-#define CON_ARGS
-//#define TERCERA_VARIANTE
+#define TERCERA_VARIANTE
 vector<string> MItem;
 vector<string> Evento;
-#ifdef SIN_ARGS
+#ifndef CON_ARGS
 vector<Bol *> B;
 #endif
 Fecha *FECHA;
@@ -18,20 +18,26 @@ int cont=2;
 //void mostrar_vector(vector<Bol *>);
 //void mostrar_Boleto(Boleto *);
 void agregar(int, Boleto *);
-string ingresar_nombre();
 void agregar(Bol *);
+void agregar(Bol*,int,Boleto*);
 void agregar(vector<Bol *>&, int, Boleto *);//Note el uso de referencia
 void resumen(int);
+void resumen(Bol *, int);
 void resumen(vector<Bol *>, int);
 int mostrar_menu();
 void procesar_comandos();
+void procesar_comandos(Bol *);
 void procesar_comandos(vector<Bol *>);
 void generar_Boleto();
+void generar_Boleto(Bol *);
 void generar_Boleto(vector<Bol *>);
 void presentar_Resumen();
+void presentar_Resumen(Bol *P);
 void presentar_Resumen(vector<Bol *>);
 void crear_Evento();
 void crear_Evento(vector<Bol*>&, vector<string>&);
+void agregar_evento();
+string ingresar_nombre();
 
 int main(){
   string evento3="Agregar Evento";
@@ -44,19 +50,35 @@ int main(){
   string evento2="Eleccion de Representantes al CTCE UPIITA";
   Evento.push_back(evento1);
   Evento.push_back(evento2);
+#ifdef TERCERA_VARIANTE
+  string evento4="Regresar a menu anterior";
+  Evento.push_back(evento4);
+  int Nummadeeventos=10;
+  Bol *B;
+  B=new Bol[Nummadeeventos];
+  B->set_evento(evento1);
+  (B+1)->set_evento(evento2);
+#endif
 #ifdef CON_ARGS
 vector<Bol *> B;
 #endif
+#ifndef TERCERA_VARIANTE
   B.push_back(new Bol());
   B.push_back(new Bol());
-  B[0]->set_evento(evento1);
-  B[1]->set_evento(evento2);
+#endif
+#ifndef TERCERA_VARIANTE
+  B[0]->set_evento(evento1);//B[0]i equivale a *(B+0)
+  B[1]->set_evento(evento2);//B[0]i equivale a *(B+1)
+#endif
   
 #ifdef CON_ARGS
   procesar_comandos(B);
 #endif
 #ifdef SIN_ARGS
   procesar_comandos();
+#endif
+#ifdef TERCERA_VARIANTE
+  procesar_comandos(B);
 #endif
   
   return 0;
@@ -91,6 +113,7 @@ cout << "Despues de crear_Evento():B.size()="<<B.size() << endl;
   }while(elec!=MItem.size()-1);
 }
 #endif
+#ifdef CON_ARGS
 void procesar_comandos(vector<Bol *> B){
   int elec;
   do{
@@ -109,6 +132,7 @@ void procesar_comandos(vector<Bol *> B){
     };
   }while(elec!=MItem.size()-1);
 }
+#endif
 #ifdef SIN_ARGS
 void presentar_Resumen(){
   resumen(Evento.size());
@@ -127,12 +151,14 @@ void Bol::set_evento(string evt){
 }
 
 
+/*
 string ingresar_nombre(){
   string nuevoevento;
   cout<<"Ingrese el nombre de su evento:";
   getline(cin,nuevoevento);
   return nuevoevento;
 }
+*/
 void agregar(Bol *B){
   int a1=Evento.size();
   string nuevoevento="";
@@ -170,8 +196,7 @@ void agregar(int index, Boleto *b){
 //  cout << "AFTER\n";
 //  P[index]->V.push_back(b);
 //}
-#ifdef TERCERA_VARIANTE
-//#error WE ARE HERE!!!
+#ifdef SIN_ARGS
 void generar_Boleto(){
   int M;
   Boleto *b;
@@ -183,21 +208,7 @@ void generar_Boleto(){
   b=new Boleto(FECHA);
   agregar(M, b);
 }
-#endif /* TERCERA_VARIANTE */
-//#ifndef TERCERA_VARIANTE
-//#error WE ARE NOT HERE
-//void generar_Boleto(){
-//  int M;
-//  Boleto *b;
-//  cout << "Elija el evento:" << endl;
-//  for(int i=0; i<Evento.size(); ++i)
-//    cout << i << " " << Evento[i] << endl;
-//  cout << "Evento elegido: ";
-//  cin >> M;
-//  b=new Boleto(FECHA);
-//  agregar(M, b);
-//}
-//#endif /* TERCERA_VARIANTE */
+#endif /* SIN_ARGS */
 #ifdef CON_ARGS
 void generar_Boleto(vector<Bol *> P){
   int M;
@@ -269,3 +280,90 @@ void crear_Evento(vector<Bol*>&KB, vector<string>&EVT){
   KB[KB.size()-1]->set_evento(cad);
   EVT.push_back(cad);
 }
+
+void agregar_evento(Bol *B){
+  int a1;
+  a1=Evento.size();
+//string nuevoEvento=ingresar_nombre();
+  string nuevoEvento="";
+  do{
+    nuevoEvento=ingresar_nombre();
+  }while(nuevoEvento=="");
+// string nuevoEvento="Simposium"; //BIEN¡
+  Evento.push_back("Regresar a menu anterior");
+  Evento[a1-1]=nuevoEvento;//a1-1
+//Bol *B;
+//B= new Bol[3];
+  (B+a1-1)->set_evento(nuevoEvento);//a1-1
+//return 0;
+}
+
+string ingresar_nombre(){
+  string nuevoEvento;
+  cout << "Ingrese el nombre de su evento por favor: ";
+  getline(cin,nuevoEvento);
+//cout << "Se ingreso el evento: " << nuevoEvento <<endl;
+  return nuevoEvento;
+}
+
+#ifdef TERCERA_VARIANTE
+void procesar_comandos(Bol *B){
+  int elec;
+  do{
+    elec=mostrar_menu();
+    switch(elec){
+      case 0:{generar_Boleto(B);break;}
+      case 1:{agregar_evento(B);break;}
+      case 2:{presentar_Resumen(B);break;}//Para evitar SEGFAULT hay que llamar a presentar_Resumen()
+//solo si para todos los eventos hay al menos un Boleto generado
+// o mas bien en presentar_Resumen() antes de imprimir
+//la info del cada evento asegurarse de que hay al menos un boleto
+//generado por el evento.
+      default:{break;}
+    };
+  }while(elec!=MItem.size()-1);
+}
+void generar_Boleto(Bol *P){
+int M;
+Boleto *b;
+// do{
+cout << "Elija el evento:" << endl;
+for(int i=0; i<Evento.size(); ++i)
+cout << i << " " << Evento[i] << endl;
+cout << "Evento elegido: ";
+cin >> M;
+if (M==(Evento.size()-1)){
+procesar_comandos(P);
+}
+else{
+b=new Boleto(FECHA);
+agregar(P, M, b);
+}
+//}while(M<0 || M>(Evento.size()-1));
+}
+void presentar_Resumen(Bol *P){
+cout<<endl <<"Total de eventos: " <<Evento.size()-1<< endl;
+resumen(P, Evento.size()-1);
+}
+/**
+@param index: indice que corresponde al evento para el cual
+se va a agregar un Boleto en el vector<Boleto*> V del
+index-esimo objeto de clase Bol.
+*/
+void agregar(Bol *P, int index, Boleto *b){
+b->numdbol=(P+index)->V.size()+1;
+(P+index)->V.push_back(b);
+}
+
+/**
+@param n: el numero de eventos para los cuales hay series de boletos.
+*/
+void resumen(Bol *P, int n){
+cout << Empresa<string>::str_empresa << endl;
+cout << "Total de Boletos emitidos: " << Boleto::get_consecutivo() << endl;
+for(int k=0; k<n; ++k){
+cout << "Boletos emitidos para el evento (" << *((*((P+k)->V[0])).f) << ") \""
+<< (P+k)->evento << "\": " << (P+k)->V.size() << endl;
+}
+}
+#endif
