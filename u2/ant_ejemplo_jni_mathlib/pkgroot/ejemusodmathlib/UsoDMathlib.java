@@ -23,7 +23,7 @@ public class UsoDMathlib implements ActionListener {//2/5
 
     BSumar.addActionListener(this);//3/5
     BMultiplicar.addActionListener(this);
-	F.addActionListener(new WindowAdapter(){
+	F.addWindowListener(new WindowAdapter(){
 	  public void windowClosing(WindowEvent we){
 	    F.dispose();
 		System.exit(0);
