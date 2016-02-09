@@ -8,6 +8,10 @@ void copy(wchar_t to[], wchar_t from[]){
 	int i = 0;
 	while((to[i] = from[i]) != L'\0') i++; 
 }
+void ncopy(char to[], char from[]){
+	int i = 0;
+	while((to[i] = from[i]) != '\0') i++; 
+}
 
 
 void prog_detallado(struct prog_detallado *pd){
@@ -16,12 +20,14 @@ void prog_detallado(struct prog_detallado *pd){
 	/* finalmente mostramos el programa detallado de la UA */
 	mostrar_prog_detallado(pd);
 }
-wchar_t ***nombresdtemas = (wchar_t ***)malloc(numdunidades * sizeof(wchar_t **));
+//wchar_t ***nombresdtemas = (wchar_t ***)malloc(numdunidades * sizeof(wchar_t **));
+char ***nombresdtemas = (char ***)malloc(numdunidades * sizeof(char **));
 
 void set_prog_detallado(struct prog_detallado *pd){
 	int i, j, k;
 	/* copiando el nombre de la unidad de aprendizaje */
-	copy(pd->nombre, unidaddaprendizaje);
+	//copy(pd->nombre, unidaddaprendizaje);
+	ncopy(pd->nombre, unidaddaprendizaje);
 	pd->numdunidades = numdunidades;
 	/* reservamos espacio para las struct unidad de 
 	   la unidad de aprendizaje */
@@ -29,10 +35,7 @@ void set_prog_detallado(struct prog_detallado *pd){
 
 	/* coloco los nombres de los temas en un arreglo de dimensiones 
 	   adecuadas */
-//	wchar_t ***nombresdtemas = (wchar_t ***)malloc(numdunidades * sizeof(wchar_t **));
-//	*(nombresdtemas + 0) = nombresdtemasdu1;
-	*(nombresdtemas + 0) = DefaultNames<wchar_t**>::nombresdtemasdu1;
-        set_nombresdtemasdu1();
+	*(nombresdtemas + 0) = nombresdtemasdu1;
 	*(nombresdtemas + 1) = nombresdtemasdu2;
 	*(nombresdtemas + 2) = nombresdtemasdu3;
 	*(nombresdtemas + 3) = nombresdtemasdu4;
@@ -47,10 +50,13 @@ void set_prog_detallado(struct prog_detallado *pd){
 			malloc((pd->unidad + i)->numdtemas * 
 					sizeof(struct tema));
 		/* copiando nombres de las unidades */
-		copy((pd->unidad + i)->nombre, unit[i]);  
+		//copy((pd->unidad + i)->nombre, unit[i]);  
+		ncopy((pd->unidad + i)->nombre, unit[i]);  
 		/* copiando nombres de los temas de las unidades */
 		for(j = 0; j < numdtemas[i]; ++j){
-			copy(((pd->unidad + i)->tema + j)->nombre, 
+			//copy(((pd->unidad + i)->tema + j)->nombre, 
+			//			*(*(nombresdtemas + i) + j));
+			ncopy(((pd->unidad + i)->tema + j)->nombre, 
 						*(*(nombresdtemas + i) + j));
             ((pd->unidad + i)->tema + j)->numdsubtemas = *(*(numdsubtemas + i) + j); // <-ES LO MISMO QUE TEMA[i][j]
             /* RESERVAMOS MEMORIA PARA SUBTEMA */
@@ -60,7 +66,9 @@ void set_prog_detallado(struct prog_detallado *pd){
             /* ciclo para los subtemas */
                   for(k = 0; k < *(*(numdsubtemas + i) + j); ++k){
             /* COPIA SUBTEMA */
-                   copy((((pd->unidad + i)->tema + j)->subtema + k)->nombre,
+                   //copy((((pd->unidad + i)->tema + j)->subtema + k)->nombre,
+                   //        *(*(*(nombresdsubtemas + i) + j) + k));
+                   ncopy((((pd->unidad + i)->tema + j)->subtema + k)->nombre,
                            *(*(*(nombresdsubtemas + i) + j) + k));
                   }
                 }
@@ -69,13 +77,16 @@ void set_prog_detallado(struct prog_detallado *pd){
 
 void mostrar_prog_detallado(struct prog_detallado *pd){
 	int i, j, k;
-	wprintf(L"Unidad de Aprendizaje: %Ls\n", pd->nombre);
+        printf("Unidad de Aprendizaje: %s\n", pd->nombre);
 	for(i = 0; i < numdunidades; ++i){
-		wprintf(L"UNIDAD %d %Ls\n", i + 1, (pd->unidad + i)->nombre);
+		//wprintf(L"UNIDAD %d %Ls\n", i + 1, (pd->unidad + i)->nombre);
+		printf("UNIDAD %d %s\n", i + 1, (pd->unidad + i)->nombre);
 		for(j = 0; j < (pd->unidad + i)->numdtemas; ++j){
-			wprintf(L"  %d.%d %Ls\n", i+1,j+1, ((pd->unidad + i)->tema + j)->nombre);
+			//wprintf(L"  %d.%d %Ls\n", i+1,j+1, ((pd->unidad + i)->tema + j)->nombre);
+			printf("  %d.%d %s\n", i+1,j+1, ((pd->unidad + i)->tema + j)->nombre);
                         for(k = 0; k < ((pd->unidad + i)->tema + j)->numdsubtemas; ++k){
-                                wprintf(L"    %d.%d.%d %Ls\n", i+1, j+1, k+1, (((pd->unidad + i)->tema + j)->subtema + k)->nombre);
+                                //wprintf(L"    %d.%d.%d %Ls\n", i+1, j+1, k+1, (((pd->unidad + i)->tema + j)->subtema + k)->nombre);
+                                printf("    %d.%d.%d %s\n", i+1, j+1, k+1, (((pd->unidad + i)->tema + j)->subtema + k)->nombre);
                         }
 		}
 	}

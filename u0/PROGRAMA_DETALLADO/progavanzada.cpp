@@ -1,125 +1,140 @@
+#include "DefaultNames.h"
 #define NULL ((void *)0)
 #include <wchar.h> /* wchar_t */
-//#define CUATRO
-#define CINCO
 
 
 //<!--INFORMACION UNIDAD 1
 /* Unidad 1 */
-wchar_t Unidad_1[] = L"Programacion Orientada a \
+char Unidad_1[] = "Programacion Orientada a \
 Objetos";
 
 /* Temas Unidad 1 */
-wchar_t Tema_1_1[] = L"Clases";
-wchar_t Tema_1_2[] = L"Objetos";
-wchar_t Tema_1_3[]=L"Herencia";
-wchar_t Tema_1_4[]=L"Polimorfismo";
-wchar_t Tema_1_5[]=L"Abstraccion";
-wchar_t *nombresdtemasdu1[] = { Tema_1_1, Tema_1_2, Tema_1_3, Tema_1_4, Tema_1_5 };
+char Tema_1_1[] = "Clases";
+char Tema_1_2[] = "Objetos";
+char Tema_1_3[]="Herencia";
+char Tema_1_4[]="Polimorfismo";
+char Tema_1_5[]="Abstraccion";
+char *nombresdtemasdu1[] = { Tema_1_1, Tema_1_2, Tema_1_3, Tema_1_4, Tema_1_5 };
 
 /* Subtemas Unidad 1 */
-wchar_t *nombresdsubtemasdu1t1[]={NULL};
-wchar_t *nombresdsubtemasdu1t2[]={NULL};
-wchar_t *nombresdsubtemasdu1t3[]={NULL};
-wchar_t *nombresdsubtemasdu1t4[]={NULL};
-wchar_t *nombresdsubtemasdu1t5[]={NULL};
-wchar_t **nombresdsubtemasdu1[] = { nombresdsubtemasdu1t1, nombresdsubtemasdu1t2, 
+char *nombresdsubtemasdu1t1[]={NULL};
+char *nombresdsubtemasdu1t2[]={"Atributos","Metodos"};
+char *nombresdsubtemasdu1t3[]={NULL};
+char *nombresdsubtemasdu1t4[]={NULL};
+char *nombresdsubtemasdu1t5[]={NULL};
+char **nombresdsubtemasdu1[] = { nombresdsubtemasdu1t1, nombresdsubtemasdu1t2, 
 nombresdsubtemasdu1t3, nombresdsubtemasdu1t4, nombresdsubtemasdu1t5};
 
 /*cantidades de subtemas de los temas de u1*/
+//int numdsubtemasdu1[] = {0, 2, 0, 0, 0};
 int numdsubtemasdu1[] = {0, 0, 0, 0, 0};
 //-->
 
 
 //<!--INFORMACION UNIDAD 2
 /* Unidad 2 */
-wchar_t Unidad_2[]=L"Entorno de Desarrollo";
+char Unidad_2[]="Entorno de Desarrollo";
 
 /* Temas Unidad 2 */
-wchar_t Tema_2_1[]=L"Ambiente de Desarrollo";
-wchar_t Tema_2_2[]=L"Proyecto";
-wchar_t *nombresdtemasdu2[]={Tema_2_1, Tema_2_2};
+char Tema_2_1[]="Ambiente de Desarrollo";
+char Tema_2_2[]="Proyecto";
+char *nombresdtemasdu2[]={Tema_2_1, Tema_2_2};
 
 /* Subtemas Unidad 2 */
-wchar_t *nombresdsubtemasdu2t1[]={NULL};
-wchar_t *nombresdsubtemasdu2t2[]={NULL};
-wchar_t **nombresdsubtemasdu2[]={nombresdsubtemasdu2t1, nombresdsubtemasdu2t2};
+char *nombresdsubtemasdu2t1[]={"Barra de menus","Area de trabajo"};
+char *nombresdsubtemasdu2t2[]={"Crear un proyecto","Configurar bibliotecas",\
+"Cargar un proyecto","Compilar un proyecto"};
+char **nombresdsubtemasdu2[]={nombresdsubtemasdu2t1, nombresdsubtemasdu2t2};
 
 /*cantidades de subtemas de los temas de u2*/
+//int numdsubtemasdu2[]={2, 4};
 int numdsubtemasdu2[]={0, 0};
 //-->
 
 
 //<!--INFORMACION UNIDAD 3
 /* Unidad 3 */
-wchar_t Unidad_3[]=L"Interfaz grafica de usuario (GUI)";
+char Unidad_3[]="Interfaz grafica de usuario (GUI)";
 
 /* Temas Unidad 3 */
-wchar_t Tema_3_1[]={L"Controles Basicos"};
-wchar_t Tema_3_2[]={L"Controles Avanzados"};
-wchar_t Tema_3_3[]={L"Eventos"};
-wchar_t *nombresdtemasdu3[]={Tema_3_1, Tema_3_2, Tema_3_3};
+char Tema_3_1[]={"Controles Basicos"};
+char Tema_3_2[]={"Controles Avanzados"};
+char Tema_3_3[]={"Eventos"};
+char *nombresdtemasdu3[]={Tema_3_1, Tema_3_2, Tema_3_3};
 
 /* Subtemas Unidad 3 */
-wchar_t *nombresdsubtemasdu3t1[]={NULL};
-wchar_t *nombresdsubtemasdu3t2[]={NULL};
-wchar_t *nombresdsubtemasdu3t3[]={NULL};
-wchar_t **nombresdsubtemasdu3[]={
-    nombresdsubtemasdu3t1,nombresdsubtemasdu3t2,nombresdsubtemasdu3t3};
+char *nombresdsubtemasdu3t1[]={"Formas","Botones","Etiquetas"};
+char *nombresdsubtemasdu3t2[]={"Control ListBox","Control ComboBox",\
+"Cuadros de dialogo de archivo","Cuadros de dialogo de imagenes"};
+char *nombresdsubtemasdu3t3[]={"Evento Clic","Evento OnChange",\
+"Evento OnEnter","Evento OnExit","Evento OnTimer","Evento OnMouseDown, OnMouseUp",\
+"Evento OnKeyPress, OnKeyUp, Evento OnKeyDown"};
+char **nombresdsubtemasdu3[]={
+   nombresdsubtemasdu3t1,nombresdsubtemasdu3t2,nombresdsubtemasdu3t3};
 
 /*cantidades de subtemas de los temas de u3*/
+//int numdsubtemasdu3[] = {3, 4, 8};
 int numdsubtemasdu3[] = {0, 0, 0};
 //-->
 
 
 //<!--INFORMACION UNIDAD 4
 /* Unidad 4 */
-wchar_t Unidad_4[]=L"Puertos y comunicaciones";
+char Unidad_4[]="Puertos y comunicaciones";
 
 /* Temas Unidad 4 */
-wchar_t Tema_4_1[]=L"Puerto serie";
-wchar_t Tema_4_2[]=L"Puerto USB";
-wchar_t Tema_4_3[]=L"Comunicacion TCP/IP";
-wchar_t *nombresdtemasdu4[]={Tema_4_1, Tema_4_2, Tema_4_3};
+char Tema_4_1[]="Puerto serie";
+char Tema_4_2[]="Puerto USB";
+char Tema_4_3[]="Comunicacion TCP/IP";
+char *nombresdtemasdu4[]={Tema_4_1, Tema_4_2, Tema_4_3};
 
 /* Subtemas Unidad 4 */
-wchar_t *nombresdsubtemasdu4t1[]={NULL};
-wchar_t *nombresdsubtemasdu4t2[]={NULL};
-wchar_t *nombresdsubtemasdu4t3[]={NULL};
-wchar_t **nombresdsubtemasdu4[]={
-    nombresdsubtemasdu4t1, nombresdsubtemasdu4t2, nombresdsubtemasdu4t3};
+char *nombresdsubtemasdu4t1[]={"Principio de funcionamiento","Abrir comunicacion",\
+"Configuracion de velocidad, tamanio de datos, paridad, bit de paro",\
+"Tranferir datos","Recibir datos"};
+char *nombresdsubtemasdu4t2[]={"Caracteristicas del puerto USB","Teoria de operacion",\
+"Controladores y bibliotecas dinamicas","HID USB","Implmentacion en Hardware",\
+"Implementacion en software"};
+char *nombresdsubtemasdu4t3[]={"Crear socket","Asociar un socket","Escuchar",\
+"Conectar","Aceptar conexion","Enviar","Cerrar"};
+char **nombresdsubtemasdu4[]={
+   nombresdsubtemasdu4t1, nombresdsubtemasdu4t2, nombresdsubtemasdu4t3};
 
 /*cantidades de subtemas de los temas de u4*/
+//int numdsubtemasdu4[] = {5, 6, 7};
 int numdsubtemasdu4[] = {0, 0, 0};
 //-->
 
 
 //<!--INFORMACION UNIDAD 5
 /* Unidad 5 */
-wchar_t Unidad_5[]=L"Vision";
+char Unidad_5[]="Vision";
 
 /* Temas Unidad 5 */
-wchar_t Tema_5_1[]=L"Vision";
-wchar_t *nombresdtemasdu5[]={Tema_5_1};
+char Tema_5_1[]="Vision";
+char *nombresdtemasdu5[]={Tema_5_1};
 
 /* Subtemas Unidad 5 */
-wchar_t *nombresdsubtemasdu5t1[]={NULL};
-wchar_t **nombresdsubtemasdu5[]={nombresdsubtemasdu5t1};
+char *nombresdsubtemasdu5t1[]={"Crear ventana de captura","Conectar el controlador",\
+"Vista previa","Capturar una imagen","Manipular pixeles"};
+char **nombresdsubtemasdu5[]={nombresdsubtemasdu5t1};
 
 /*cantidades de subtemas de los temas de u5*/
+//int numdsubtemasdu5[] = {5};
 int numdsubtemasdu5[] = {0};
 //-->
 
 
 //<!--INFORMACION GLOBAL DE LA UA PROGRAMACION AVANZADA
 /* Nombre de la Unidad de Aprendizaje (UA) */
-wchar_t unidaddaprendizaje[]=L"PROGRAMACION AVANZADA"; 
+char unidaddaprendizaje[]="PROGRAMACION AVANZADA"; 
 int numdunidades = 5; /* numero de unidades de la UA */
 
-wchar_t *unit[] = {Unidad_1, Unidad_2, Unidad_3, Unidad_4, Unidad_5};
+//wchar_t *unit[] = {Unidad_1, Unidad_2, Unidad_3, Unidad_4, Unidad_5};
+char *unit[] = {Unidad_1, Unidad_2, Unidad_3, Unidad_4, Unidad_5};
 int numdtemas[] = {5, 2, 3, 3, 1};/* cantidades de temas de las unidades */
 
-wchar_t ***nombresdsubtemas[]={nombresdsubtemasdu1, nombresdsubtemasdu2, 
+char ***nombresdsubtemas[]={nombresdsubtemasdu1, nombresdsubtemasdu2, 
     nombresdsubtemasdu3, nombresdsubtemasdu4, nombresdsubtemasdu5};
 
 int *numdsubtemas[] = {numdsubtemasdu1, numdsubtemasdu2, 
