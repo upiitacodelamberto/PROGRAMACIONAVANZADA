@@ -1,9 +1,18 @@
+#include <iostream>
 #include <stdlib.h>	/* malloc() */
-struct fecha{
-	int d,m,a;	/* dia, mes, anio */
-};
-typedef struct fecha Fecha;
+using namespace std;	/* cout */
+#include "myfecha.h"
 char *D[]={(char*)"Lunes",(char*)"Martes"};
+void Fecha::to_string_Pt(){
+	cout<<d<<"/"<<m<<"/"<<a;
+}
+
+string DIA[]={"Lunes","Martes","Miercoles","Jueves","Viernes",
+"Sabado","Domingo"};
+/*agosto de 2017 SOLO PARA ESTE MES*/
+void Fecha::set_dia(){
+	Fecha::dia=DIA[Fecha::d%7];
+}
 
 char *get_dia(int intNumDia){
 	switch(intNumDia){
@@ -22,7 +31,15 @@ char *get_dia(int intNumDia){
 	}
 }
 
-Fecha *get_Fecha(int intFecha){
+Fecha *get_Fecha(int intFecha){/*20170818*/
 	Fecha *R=(Fecha*)malloc(sizeof(Fecha));
+	int tmp=100*(intFecha/100);
+	R->d=intFecha-tmp;
+	tmp=10000*(intFecha/10000);
+	R->m=(intFecha-tmp)/100;
+	tmp=1000000*(intFecha/1000000);
+	R->a=(intFecha-tmp)/10000;
 	return R;
 }
+
+
