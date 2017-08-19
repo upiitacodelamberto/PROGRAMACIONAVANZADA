@@ -11,6 +11,6 @@ int main(int argc, char** argv) {
 	Fecha *F=get_Fecha(20170817);
 	F->set_dia();
 	F->to_string_Pt();
-	cout<<"("<<F->dia<<")"<<endl;
+	cout<<" ("<<F->dia<<")"<<endl;
 	return 0;
 }
