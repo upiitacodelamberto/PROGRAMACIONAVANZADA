@@ -1,0 +1,316 @@
+                                             Sábado 19 de agosto de 2017
+Sobre la inicialización de apuntadores a objeto
+
+Se debe inicializar los apuntadores a objeto utlizando el operador new.
+¿Por qué razón? ¿se puede inicializar apuntadores a objeto de otra forma?
+La siguiente situación me ha costado horas de búsquedas de respuestas en 
+foros de internet, aunque he de decir que no considero la mayor parte de 
+esas horas compo pérdida de tiempo, ya que me permitieron la posibilidad 
+de conocer (al menos superficialmente) sobre algunos aspectos relacionados 
+con el enlazado de archivos objeto (véase [Levine]).
+
+Cuando se programa en C++, es posible utilizar --como introducción a las 
+clases-- estructuras para codificar clases sin secciones privadas. Por 
+ejemplo, el siguiente es el código de una clase fecha:
+\begin{verbatim}
+/** myfecha.h
+ * Introduccion a las clases
+ * En C++ las estructuras son clases sin secciones privadas.
+ */
+struct fecha{
+	int d,m,a;	/* dia, mes, anio */
+	void to_string_Pt();
+	void set_dia();
+	string dia;
+};
+typedef struct fecha Fecha;
+\end{verbatim}
+En el archivo de implementación de esta clase se incluyó una función para 
+obtener un apuntador a objeto de clase Fecha cuyo prototipo es
+\begin{verbatim}
+/**
+ * Devuelve un apuntador a Fecha.
+ * @param intFecha: debe representar una fecha de acuerdo con el formato 
+ *                  yyyymmdd, por ejemplo, 20170819 representa 19 de agosto 
+ *                  de 2017.
+ */
+Fecha *get_Fecha(int intFecha);
+\end{verbatim}
+En la implementación de esta función, originalmente inicialicé el apuntador 
+con la función malloc:
+\begin{verbatim}
+/** diadelasemana.cpp
+ * Implementación de la clase sin secciones privadas --struct-- Fecha.
+ */
+#include <iostream>
+#include <stdlib.h>	/* malloc() */
+using namespace std;	/* cout */
+#include "myfecha.h"
+//...
+void Fecha::to_string_Pt(){
+	cout<<d<<"/"<<m<<"/"<<a;
+}
+//...
+/**
+ * Devuelve un apuntador a Fecha.
+ * @param intFecha: debe representar una fecha de acuerdo con el formato 
+ *                  yyyymmdd, por ejemplo, 20170819 representa 19 de agosto 
+ *                  de 2017.
+ */
+Fecha *get_Fecha(int intFecha){/*20170818*/
+	class MyUtil{
+	public:
+		/**
+		* @return: Decena y Unidad de un numero entero
+		*/
+		static int DyU(int num){
+			int tm=100*(num/100);
+			return num-tm;
+		}
+	};//end class MyUtil
+	Fecha *R=(Fecha*)malloc(sizeof(Fecha));
+	R->d=MyUtil::DyU(intFecha);
+	R->m=MyUtil::DyU(intFecha/100);
+	R->a=intFecha/10000;
+	return R;
+}
+\end{verbatim}
+En este código, note el uso de la función malloc para la inicialización 
+del apuntador R. De la misma forma, note también que en esta misma función 
+se esta escribiendo en las variables de objeto R->d, R->m, R->a. En los 
+primeros drivers de prueba, en los cuales solo se accede a los atributos 
+(variables de objeto) del objeto de clase Fecha, para escritura en la 
+función get_Fecha, y para lectura en el método to_string_Pt; el proyecto 
+se compila, enlaza y ejecuta sin problema alguno. Por ejemplo, con un 
+archivo principal
+\begin{verbatim}
+/** main.cpp - driver de prueba para la clase struct fecha.
+ */
+#include <iostream>
+#include <stdio.h>
+using namespace std;	/* string */
+#include "myfecha.h"
+/* run this program using the console pauser or add your own getch, system("pause") or input loop */
+char *get_dia(int intNumDia);
+/**
+ * Devuelve un apuntador a Fecha.
+ * @param intFecha: debe representar una fecha de acuerdo con el formato 
+ *                  yyyymmdd, por ejemplo, 20170819 representa 19 de agosto 
+ *                  de 2017.
+ */
+Fecha *get_Fecha(int intFecha);
+
+int main(int argc, char** argv) {
+	printf("%s 14 de agosto de 2017\n",get_dia(0));
+	Fecha *F=get_Fecha(20170817);
+	F->to_string_Pt();
+	return 0;
+}
+\end{verbatim}
+se obtiene como salida:
+\begin{verbatim}
+Lunes 14 de agosto de 2017
+17/8/2017
+--------------------------------
+Process exited after 0.2247 seconds with return value 0
+Presione una tecla para continuar . . .
+\end{verbatim}
+Ahora bien, cuando se agrega la implementación del método set_dia 
+(véase la declaración de la clase fecha\footnote{En este documento 
+utilizo fecha y Fecha indistintamente por dos razones:1.- en el 
+archivo myfecha.h se incluyó la línea typedef struct fecha Fecha; 
+2.- en el lenguaje C++ las estructuras son verdaderas clases, solo 
+que son clases sin secciones privadas}) en el archivo 
+diadelasemana.cpp o en cualquier otro archivo que se agregue al 
+proyecto de DevCpp, por ejemplo, como se muestra a continuación
+\begin{verbatim}
+/** diadelasemana.cpp
+ * Implementación de la clase sin secciones privadas --struct-- Fecha.
+ */
+//...
+string DIA[]={"Lunes","Martes","Miercoles","Jueves","Viernes",
+"Sabado","Domingo"};
+/*agosto de 2017 SOLO PARA ESTE MES*/
+void Fecha::set_dia(){
+	dia=DIA[(d+7)%7];
+}
+\end{verbatim}
+el proyecto se puede seguir compilando, enlazando y ejecutando mientras 
+no se use el método set_dia, la salida es idéntica a la que se mostró 
+anteriormente. Sin embargo, cuando desde el driver de prueba (archivo 
+main.cpp), se intenta escribir en el string dia del objeto, pasando el 
+mensaje (llamando al método) set_dia al objeto y después leer ese mismo 
+string derreferenciando el apuntador F usando (F->dia, véase el 
+siguiente código):
+\begin{verbatim}
+/** main.cpp - driver de prueba para la clase struct fecha.
+ */
+//...
+Fecha *get_Fecha(int intFecha);
+
+int main(int argc, char** argv) {
+	printf("%s 14 de agosto de 2017\n",get_dia(0));
+	Fecha *F=get_Fecha(20170817);
+	F->set_dia();
+	F->to_string_Pt();
+	cout<<" ("<<F->dia<<")"<<endl;
+	return 0;
+}
+\end{verbatim}
+entonces el proyecto se puede compilar y enlazar, pero el sistema 
+operativo lo detiene en tiempo de ejecución con un mensaje que dice:
+\begin{verbatim}
+Project_0.exe dejó de funcionar
+Windows puede buscar una solución en línea al problema.
+-> Buscar una solución en línea y cerrar el programa
+-> Cerrar el programa
+[Boton] Ver detalles del problema
+\end{verbatim}
+Si se da clic en el botón que está a la izquierda del texto que dice 
+Ver detalles del problema, podemos encontrar entre otras, una línea 
+que dice 
+\begin{verbatim}
+  Código de excepción:	c0000005
+\end{verbatim}
+Tenemos pues, al menos dos opciones: One, Indagamos sobre qué significa 
+el Código de excepción c0000005 en el sistema operativo Windows, o Two, 
+nos esforzamos por aprender un poco más sobre cómo programar 
+correctamente en el lenguaje C++. De estos dos, el camino que debemos 
+elegir dependerá de nuestra prioridad para aprender ya sea sobre 
+sistemas operativos (en este caso sobre los códigos de excepción del 
+sistema operativo windows), o bien para aprender sobre el lenguaje de 
+programación C++; y principalmente de nuestra disponibilidad de tiempo. 
+En este caso, naturalmente me he decidido por el segundo camino: 
+indagar sobre cómo programar correctamente en el lenguaje C++. De 
+acuerdo con la referencia [Bustamante], pág. 11:
+\begin{verbatim}
+"Una clase sin secciones privadas es aquella en la que no se aplica 
+la encapsulación. Esta posibilidad no es muy interesante en la 
+programación habitual, pero puede servir de introducción a las clases.
+
+   Ya se ha dicho que la principal característica de las clases de C++ 
+era que agrupan datos y funciones. En C++ las estructuras son 
+verdaderas clases. Se pueden añadir algunas funciones a las estructuras 
+para que sean casos más reales. Estas funciones serán los métodos que 
+permitirán interactuar con las variables de esa clase.
+
+   Así crearíamos la clase C_Cuenta de esta manera:
+struct C_Cuenta {
+  // Variables miembro
+  double Saldo;           // Saldo Actual de la cuenta
+  double Interes;         // Interes aplicado
+  // Métodos
+  double GetSaldo();
+  double GetInteres();
+  void SetSaldo(double unSaldo);
+  void SetInteres(double unInteres);
+};
+
+Las definiciones de esas funciones o métodos podrían ser cómo sigue:
+double C_Cuenta::GetSaldo()
+{ return Saldo; }          // Se obtiene el valor de la variale Saldo
+
+double C_Cuenta::GetInteres()
+{ return Interes; }       // Se obtiene el valor de la variale Interes
+
+void C_Cuenta::SetSaldo(double unSaldo)
+{ Saldo=unSaldo; }        // Se asigna un valor a la variable Saldo
+
+void C_Cuenta::SetInteres(double unInteres)
+{ Interes=UnInteres; }    // Se asigna un valor a la variable Interes
+
+Se puede adelantar ya que las funciones que se acaban de definir van a 
+resultar muy útiles para acceder a las variables miembro de una clase, 
+salvaguardando el priincipio de encapsulación.
+   La definición de las funciones miembro puede estar incluida en la 
+definición de la propia clase, en cuyo caso la clase quedaría como se 
+muestra a continuación:
+
+struct C_Cuenta {
+  // Variables miembro
+  double Saldo;           // Saldo Actual de la cuenta
+  double Interes;         // Interes aplicado
+  // Métodos
+  
+  double C_Cuenta::GetSaldo()
+  { return Saldo; }          // Se obtiene el valor de la variale Saldo
+  
+  double C_Cuenta::GetInteres()
+  { return Interes; }       // Se obtiene el valor de la variale Interes
+  
+  void C_Cuenta::SetSaldo(double unSaldo)
+  { Saldo=unSaldo; }        // Se asigna un valor a la variable Saldo
+  
+  void C_Cuenta::SetInteres(double unInteres)
+  { Interes=UnInteres; }    // Se asigna un valor a la variable Interes
+};
+void main(void) {
+  C_Cuenta c1;
+  c1.Interes=4.0;// válida, pero se viola el princioio de encapsulación
+  c1.SetInteres(4.0);  // correcto
+}
+
+   En el ejemplo anterior aparece ya un pequeño programa principal que 
+utiliza la clase que se acaba de definir.
+   Se puede ver que una llamada a la función SetInteres() en la forma 
+   c1.SetInteres(100.0);
+es euivalente a la sentencia:
+   c1.Interes=100.0;
+mientras que una llamada a la función GetSaldo() en la forma:
+   cash=c2.GetSaldo();
+es equivalente a la sentencia:
+   cash=c2.GetSaldo();
+   Esta última forma de acceder a una variable miembro de una clase 
+atenta contra el principio de encapsulación, que es uno de los 
+objetivos más importantes de la programación orientada a objetos.
+"
+\end{verbatim}
+A la luz de la información anterior, y volviendo a comentar sobre el  
+código de mi proyecto en donde se declaró la clase sin secciones 
+privadas fecha, me percato de que no es conveniente inicializar un 
+apuntador a objeto de clase fecha utilizando la función malloc. Dado  
+que fecha es una clase --sin secciones privadas, pero es una clase-- 
+la forma correcta de inicializar un apuntador a objeto de clase fecha 
+tiene que ser la forma en que se debe inicializar un apuntador a objeto 
+de clase de cualquier clase declarada en C++ usando la palabra 
+reservada class. Es decir, utilizando el operador new. Así, llego a la 
+conclusión de que la forma de corregir el error que provocó la 
+excepción c0000005 mencionada en el mensaje de error, es cambiar la 
+inicialización del apuntador R en la función get_Fecha, como se muestra 
+a continuación:
+\begin{verbatim}
+/** diadelasemana.cpp
+ * Implementación de la clase sin secciones privadas --struct-- Fecha.
+ */
+//...
+fecha *get_Fecha(int intFecha){/*20170818*/
+	struct MyUtil{
+		/**
+		* @return: Decena y Unidad de un numero entero
+		*/
+		static int DyU(int num){
+			int tm=100*(num/100);
+			return num-tm;
+		}
+	};//end class MyUtil
+	//Fecha *R=(Fecha*)malloc(sizeof(Fecha));
+	Fecha *R=new Fecha();
+	R->d=MyUtil::DyU(intFecha);
+	R->m=MyUtil::DyU(intFecha/100);
+	R->a=intFecha/10000;
+	return R;
+}
+\end{verbatim}
+Después de hacer este cambio, el proyecto ya se puede compilar, enlazar 
+y ejecutar sin problema. 
+
+ 
+
+
+Referencias
+[Bustamante] Paul Bustamante, Iker Aguinaga, Miguel Aybar, Luis 
+Olaizola, Iñigo Lazacano, Aprenda C++ Avanzado como si estuviera en 
+primero, Campus Tecnológico de Universidad de Navarra, Escuela Superior 
+de Ingenieros, San Sebastian, 2004.
+[Levine] Levine, Linkers and Loaders. 
+

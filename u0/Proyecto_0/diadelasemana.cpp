@@ -1,3 +1,6 @@
+/** diadelasemana.cpp
+ * Implementación de la clase sin secciones privadas (struct) Fecha.
+ */
 #include <iostream>
 #include <stdlib.h>	/* malloc() */
 using namespace std;	/* cout */
@@ -52,9 +55,8 @@ char *get_dia(int intNumDia){
 	}
 }
 
-Fecha *get_Fecha(int intFecha){/*20170818*/
-	class MyUtil{
-	public:
+fecha *get_Fecha(int intFecha){// Tambien se puede usar Fecha* como tipo de retorno
+	struct MyUtil{
 		/**
 		* @return: Decena y Unidad de un numero entero
 		*/

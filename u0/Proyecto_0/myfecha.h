@@ -1,4 +1,4 @@
-/*
+/** myfecha.h
  * Introduccion a las clases
  * En C++ las estructuras son clases sin secciones privadas.
  */
