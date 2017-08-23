@@ -32,7 +32,8 @@ char *get_dia(int intNumDia){
 }
 
 Fecha *get_Fecha(int intFecha){/*20170818*/
-	Fecha *R=(Fecha*)malloc(sizeof(Fecha));
+	//Fecha *R=(Fecha*)malloc(sizeof(Fecha));
+	Fecha *R=new fecha();
 	int tmp=100*(intFecha/100);
 	R->d=intFecha-tmp;
 	tmp=10000*(intFecha/10000);
