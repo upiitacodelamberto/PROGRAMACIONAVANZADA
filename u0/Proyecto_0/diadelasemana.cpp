@@ -73,4 +73,21 @@ fecha *get_Fecha(int intFecha){// Tambien se puede usar Fecha* como tipo de reto
 	return R;
 }
 
+void Rac::simplificar(){
+	n=n/mcd;
+	d=d/mcd;
+}
 
+void Rac::set_mcd(){
+	int M,N,tmp;
+	if(n>d){
+		M=n;N=d;
+	}else{
+		M=d;N=n;
+	}
+	while((tmp=M%N)!=0){ /* M = QN + r */
+		M=M/N;
+		N=tmp;
+	}/*cuando este while termina, en N se tiene el mcd*/
+	mcd=N;
+}
