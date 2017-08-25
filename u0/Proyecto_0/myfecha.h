@@ -16,4 +16,9 @@ struct Rac{
 	int mcd;	/* maximo comun divisor*/
 	void simplificar();
 	void set_mcd();
+	Rac& operator+(Rac& RacObj);
+	Rac& operator-(Rac& RacObj);
+	Rac& operator*(Rac& RacObj);
+	Rac& operator/(Rac& RacObj);
+friend	ostream& operator<<(ostream& ostreamOut,Rac& RacObj); 
 };

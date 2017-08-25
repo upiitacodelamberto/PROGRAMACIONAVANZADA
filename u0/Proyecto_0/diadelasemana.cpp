@@ -80,14 +80,47 @@ void Rac::simplificar(){
 
 void Rac::set_mcd(){
 	int M,N,tmp;
-	if(n>d){
-		M=n;N=d;
+	if((n!=0)&&(d!=0)){
+		if(n>d){
+			M=n;N=d;
+		}else{
+			M=d;N=n;
+		}
+		while((tmp=M%N)!=0){ /* M = QN + r */
+			M=M/N;
+			N=tmp;
+		}/*cuando este while termina, en N se tiene el mcd*/
 	}else{
-		M=d;N=n;
+		N=1;
 	}
-	while((tmp=M%N)!=0){ /* M = QN + r */
-		M=M/N;
-		N=tmp;
-	}/*cuando este while termina, en N se tiene el mcd*/
 	mcd=N;
 }
+
+/**
+ *  Sobrecarga del operador << 
+ */
+ostream& operator<<(ostream& ostreamOut,Rac& RacObj){
+	ostreamOut<<" "<<RacObj.n<<" "<<endl;
+	ostreamOut<<"----"<<endl;
+	ostreamOut<<" "<<RacObj.d<<endl;
+	return ostreamOut;	
+}
+
+Rac& Rac::operator*(Rac& RacObj){
+	Rac RacResult;
+	RacResult.n=n*RacObj.n;
+	RacResult.d=d*RacObj.d;
+	RacResult.set_mcd();
+	RacResult.simplificar();
+	return RacResult;
+}
+
+
+
+
+
+
+
+
+
+

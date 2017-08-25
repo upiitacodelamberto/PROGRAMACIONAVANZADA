@@ -20,22 +20,19 @@ int main(int argc, char** argv) {
 	F->set_dia();
 	F->to_string_Pt();
 	cout<<" ("<<F->dia<<")"<<endl;
+	
 	Rac rac1;rac1.n=30;rac1.d=60;rac1.mcd=30;
-	cout<<" "<<rac1.n<<" "<<endl;
-	cout<<"----"<<endl;
-	cout<<" "<<rac1.d<<endl;
+	cout<<rac1;
 	rac1.simplificar();
-	cout<<" "<<rac1.n<<" "<<endl;
-	cout<<"----"<<endl;
-	cout<<" "<<rac1.d<<endl;
+	cout<<rac1;
+	
 	Rac rac2;rac2.n=64;rac2.d=128;
-	cout<<" "<<rac2.n<<" "<<endl;
-	cout<<"----"<<endl;
-	cout<<" "<<rac2.d<<endl;
+	cout<<rac2;
 	rac2.set_mcd();
 	rac2.simplificar();
-	cout<<" "<<rac2.n<<" "<<endl;
-	cout<<"----"<<endl;
-	cout<<" "<<rac2.d<<endl;
+	cout<<rac2;
+	Rac rac3=rac1*rac2;
+	cout<<rac3;
+	
 	return 0;
 }
