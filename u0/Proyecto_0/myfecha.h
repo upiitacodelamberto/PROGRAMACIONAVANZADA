@@ -20,5 +20,8 @@ struct Rac{
 	Rac& operator-(Rac& RacObj);
 	Rac& operator*(Rac& RacObj);
 	Rac& operator/(Rac& RacObj);
+	/* constructores */
+	Rac(int intNum,int intDen);
+	Rac();
 friend	ostream& operator<<(ostream& ostreamOut,Rac& RacObj); 
 };
