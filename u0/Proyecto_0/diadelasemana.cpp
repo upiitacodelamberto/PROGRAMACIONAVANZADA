@@ -6,7 +6,9 @@
 #include <windows.h>
 using namespace std;	/* cout */
 #include "myfecha.h"
+
 #include "Expresion.h"
+
 
 char *D[]={(char*)"Lunes",(char*)"Martes",(char*)"Miercoles",
 (char*)"Jueves",(char*)"Viernes",(char*)"Sabado",(char*)"Domingo"};
@@ -81,25 +83,26 @@ void Rac::simplificar(){
 	d=d/mcd;
 }
 
-void Rac::set_mcd(){
-	int M,N,tmp;
-	if((n!=0)&&(d!=0)){/* Algoritmo de Euclides */
-		if(n>d){
-			M=n;N=d;
-		}else{
-			M=d;N=n;
-		}
-		while((tmp=M%N)!=0){ /* M = QN + r */
-//			M=M/N;
-//			N=tmp;
-			M=N;N=tmp;
-		}/*cuando este while termina, en N se tiene el mcd*/
-	}else{
-		N=1;
-	}
-//	cout<<"El mcd de "<<n<<" y "<<d<<" es "<<N<<endl;
-	mcd=N;
-}
+
+//void Rac::set_mcd(){
+//	int M,N,tmp;
+//	if((n!=0)&&(d!=0)){/* Algoritmo de Euclides */
+//		if(n>d){
+//			M=n;N=d;
+//		}else{
+//			M=d;N=n;
+//		}
+//		while((tmp=M%N)!=0){ /* M = QN + r */
+////			M=M/N;
+////			N=tmp;
+//			M=N;N=tmp;
+//		}/*cuando este while termina, en N se tiene el mcd*/
+//	}else{
+//		N=1;
+//	}
+////	cout<<"El mcd de "<<n<<" y "<<d<<" es "<<N<<endl;
+//	mcd=N;
+//}
 
 /**
  *  Sobrecarga del operador << 
@@ -129,3 +132,17 @@ Rac::Rac(int intNum,int intDen):n(intNum),d(intDen){
 Rac::Rac(){
 }
 
+
+void Rac::set_mcd(){
+	int M,N,tmp;
+	if(n>d){
+		M=n;N=d;
+	}else{
+		M=d;N=n;
+	}
+	while((tmp=M%N)!=0){ /* M = QN + r */
+		M=N;
+		N=tmp;
+	}/*cuando este while termina, en N se tiene el mcd*/
+	mcd=N;
+}

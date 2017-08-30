@@ -1,9 +1,13 @@
-/** main.cpp - driver de prueba para la clase struct fecha.
+/** main.cpp - driver de prueba para la clase struct fecha y 
+ *  de las clases Expresion, Box, BoxStringEqual, 
+  * ..., ExpresionASimplificar.
  */
 #include <iostream>
 #include <stdio.h>
 using namespace std;	/* string, cout, endl */
+
 #include <windows.h>
+
 #include "myfecha.h"
 #include "Expresion.h"
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
@@ -22,6 +26,7 @@ int main(int argc, char** argv) {
 	F->set_dia();
 	F->to_string_Pt();
 	cout<<" ("<<F->dia<<")"<<endl;
+
 	
 	Rac rac1;rac1.n=30;rac1.d=60;rac1.mcd=30;
 	cout<<"rac1="<<endl<<rac1;
@@ -46,6 +51,7 @@ int main(int argc, char** argv) {
 	ExpresionASimplificar EAS4(new BoxRac(&rac4));
 	EAS4.print();
 	
+
 	return 0;
 }
 

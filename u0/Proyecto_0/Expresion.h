@@ -10,7 +10,7 @@ struct Expresion{
 	Box *BoxOperador;
 	static Box *BoxIgual;
 	long longMaxAlturaDBox;		/* atributo calculado */
-	static COORD COORD_C;/* posicion del cursor cuando se inicia y "durante" la impresion de la Expresion */
+	static COORD COORD_C;/* posicion del cursor */
 	Expresion(Box *Op1,Box *Operador,Box *Op2,Box *Result);	/* constructor */
 	Expresion();
 	virtual void print();
@@ -38,7 +38,7 @@ struct BoxStringEqual : public Box{
 	int get_intLongDBase();
 	char get_op();
 	void print(COORD);
-};//end class BoxString
+};//end class BoxStringEqual
 
 struct BoxRac : public Box{
 	Rac *R;
@@ -49,7 +49,7 @@ struct BoxRac : public Box{
 	int get_intLongDBase();
 	char get_op();
 	void print(COORD);
-};
+};//end class BoxRac
 
 struct BoxStringOperator : public Box{
 	char op;
@@ -60,7 +60,7 @@ struct BoxStringOperator : public Box{
 	int get_intLongDBase();
 	char get_op();
 	void print(COORD);
-};
+};//end class BoxStringOperator
 
 struct ExpresionASimplificar : public Expresion{
 	Rac *RacOrig;

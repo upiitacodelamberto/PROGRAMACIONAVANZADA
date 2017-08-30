@@ -2,16 +2,28 @@
 Order=0,1
 Focused=1
 [Editor_0]
-CursorCol=1
-CursorRow=52
-TopLine=30
+<<<<<<< HEAD
+CursorCol=19
+CursorRow=49
+TopLine=34
+=======
+CursorCol=2
+CursorRow=41
+TopLine=20
+>>>>>>> 4ca19ff3069e52fe3887685faa8ce6477c94734c
 LeftChar=1
 Open=1
 Top=0
 [Editor_1]
+<<<<<<< HEAD
 CursorCol=1
-CursorRow=115
-TopLine=104
+CursorRow=85
+TopLine=84
+=======
+CursorCol=8
+CursorRow=89
+TopLine=72
+>>>>>>> 4ca19ff3069e52fe3887685faa8ce6477c94734c
 LeftChar=1
 Open=1
-Top=1
+Top=0
