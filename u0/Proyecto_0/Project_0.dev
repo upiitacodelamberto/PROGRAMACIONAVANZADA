@@ -11,7 +11,7 @@ ResourceIncludes=
 MakeIncludes=
 Compiler=
 CppCompiler=
-Linker=Linking_Time/64_Bits/Expresion.o_@@_
+Linker=DevC++_5.11_Linking_Time/32_Bits/Expresion.o_@@_
 IsCpp=1
 Icon=
 ExeOutput=
@@ -27,8 +27,8 @@ CommandLine=
 Folders=
 IncludeVersionInfo=0
 SupportXPThemes=0
-CompilerSet=0
-CompilerSettings=0000000000000000000000000
+CompilerSet=3
+CompilerSettings=0000000100000000000000000
 UnitCount=2
 
 [VersionInfo]
