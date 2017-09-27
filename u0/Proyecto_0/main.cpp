@@ -62,18 +62,17 @@ int main(int argc, char** argv) {
 void driverPolinomio(void){
   Rac *unRacPt=new Rac[3];
   //cout<<"SO FAR, SO GOOD\n";
-  *unRacPt=Rac(5,20);
-  *(unRacPt+1)=Rac(7,2);
-  *(unRacPt+2)=Rac(18,5);
-  Polinomio Polinomio1(2,unRacPt);
+  *(unRacPt+0)=Rac(5,20);	/* a_{2} */
+  *(unRacPt+1)=Rac(7,2);	/* a_{1} */
+  *(unRacPt+2)=Rac(18,5);	/* a_{0} */
+  /*usamos constructor Polinomio(int,Rac*)*/
+  Polinomio Polinomio1(2,unRacPt); 
+  /*Polinomio1 es de grado 2 con coeficientes Rac a_{0} a_{1} a_{2}*/
   cout<<"Polinomio1 ="<<endl;
-  cout<<Polinomio1.A->n<<"/"<<Polinomio1.A->d
-      <<"\t"<<(Polinomio1.A+1)->n<<"/"<<(Polinomio1.A+1)->d
-	  <<"\t"<<(Polinomio1.A+2)->n<<"/"<<(Polinomio1.A+2)->d<<endl;
+  cout<<Polinomio1<<endl;
   Polinomio Polinomio2=Polinomio1+Polinomio1;
-  cout<<Polinomio2.A->n<<"/"<<Polinomio2.A->d
-      <<"\t"<<(Polinomio2.A+1)->n<<"/"<<(Polinomio2.A+1)->d
-	  <<"\t"<<(Polinomio2.A+2)->n<<"/"<<(Polinomio2.A+2)->d<<endl;  
+  cout<<"Polinomio1 + Polinomio1 ="<<endl;
+  cout<<Polinomio2<<endl;
 }
 
 

@@ -3,9 +3,9 @@ Order=0,1,2
 Focused=2
 [Editor_0]
 <<<<<<< HEAD
-CursorCol=46
-CursorRow=73
-TopLine=62
+CursorCol=67
+CursorRow=70
+TopLine=25
 =======
 CursorCol=2
 CursorRow=41
@@ -16,9 +16,9 @@ Open=1
 Top=0
 [Editor_1]
 <<<<<<< HEAD
-CursorCol=1
-CursorRow=4
-TopLine=1
+CursorCol=4
+CursorRow=157
+TopLine=106
 =======
 CursorCol=8
 CursorRow=89
@@ -30,7 +30,7 @@ Top=0
 [Editor_2]
 Open=1
 Top=0
-CursorCol=58
-CursorRow=9
-TopLine=1
+CursorCol=64
+CursorRow=45
+TopLine=33
 LeftChar=1

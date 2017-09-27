@@ -146,3 +146,14 @@ void Rac::set_mcd(){
 	}/*cuando este while termina, en N se tiene el mcd*/
 	mcd=N;
 }
+Rac& Rac::operator+(Rac& RacObj){
+	Rac RacResult;
+	RacResult.n=n*RacObj.d+d*RacObj.n;
+	RacResult.d=d*RacObj.d;
+	RacResult.set_mcd();
+	RacResult.simplificar();
+	//Expresion E(new BoxRac(this),new BoxStringOperator('+'),
+	//			new BoxRac(&RacObj),new BoxRac(&RacResult));
+	//E.print();
+	return RacResult;
+}

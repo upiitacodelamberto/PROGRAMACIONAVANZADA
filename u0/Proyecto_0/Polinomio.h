@@ -2,6 +2,7 @@
  *  con polinomios que tienen coeficientes racionales:
  *  suma de polinomios, resta de polinomios, multiplicación 
  *  de polinomios y división de polinomios.
+ *  @version 2017.09.15
  */
 struct Rac;       /* declaración anticipada */ 
 struct Polinomio{
