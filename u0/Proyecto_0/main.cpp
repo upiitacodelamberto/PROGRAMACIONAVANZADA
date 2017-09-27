@@ -10,6 +10,7 @@ using namespace std;	/* string, cout, endl */
 
 #include "myfecha.h"
 #include "Expresion.h"
+#include "Polinomio.h"
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
 char *get_dia(int intNumDia);
 /**
@@ -50,9 +51,46 @@ int main(int argc, char** argv) {
 	cout<<"rac4="<<endl;
 	ExpresionASimplificar EAS4(new BoxRac(&rac4));
 	EAS4.print();
+	void driverPolinomio(void);
+	cout<<"\n";
+	driverPolinomio();
 	
 
 	return 0;
+}//end main()
+
+void driverPolinomio(void){
+  Rac *unRacPt=new Rac[3];
+  //cout<<"SO FAR, SO GOOD\n";
+  *unRacPt=Rac(5,20);
+  *(unRacPt+1)=Rac(7,2);
+  *(unRacPt+2)=Rac(18,5);
+  Polinomio Polinomio1(2,unRacPt);
+  cout<<"Polinomio1 ="<<endl;
+  cout<<Polinomio1.A->n<<"/"<<Polinomio1.A->d
+      <<"\t"<<(Polinomio1.A+1)->n<<"/"<<(Polinomio1.A+1)->d
+	  <<"\t"<<(Polinomio1.A+2)->n<<"/"<<(Polinomio1.A+2)->d<<endl;
+  Polinomio Polinomio2=Polinomio1+Polinomio1;
+  cout<<Polinomio2.A->n<<"/"<<Polinomio2.A->d
+      <<"\t"<<(Polinomio2.A+1)->n<<"/"<<(Polinomio2.A+1)->d
+	  <<"\t"<<(Polinomio2.A+2)->n<<"/"<<(Polinomio2.A+2)->d<<endl;  
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

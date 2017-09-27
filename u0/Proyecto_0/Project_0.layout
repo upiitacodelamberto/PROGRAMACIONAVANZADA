@@ -1,11 +1,11 @@
 [Editors]
-Order=0,1
-Focused=0
+Order=0,1,2
+Focused=2
 [Editor_0]
 <<<<<<< HEAD
-CursorCol=19
-CursorRow=49
-TopLine=33
+CursorCol=46
+CursorRow=73
+TopLine=62
 =======
 CursorCol=2
 CursorRow=41
@@ -17,8 +17,8 @@ Top=0
 [Editor_1]
 <<<<<<< HEAD
 CursorCol=1
-CursorRow=85
-TopLine=84
+CursorRow=4
+TopLine=1
 =======
 CursorCol=8
 CursorRow=89
@@ -27,3 +27,10 @@ TopLine=72
 LeftChar=1
 Open=1
 Top=0
+[Editor_2]
+Open=1
+Top=0
+CursorCol=58
+CursorRow=9
+TopLine=1
+LeftChar=1
