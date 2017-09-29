@@ -71,8 +71,12 @@ void driverPolinomio(void){
   cout<<"Polinomio1 ="<<endl;
   cout<<Polinomio1<<endl;
   Polinomio Polinomio2=Polinomio1+Polinomio1;
-  cout<<"Polinomio1 + Polinomio1 ="<<endl;
+  cout<<"Polinomio2 = Polinomio1 + Polinomio1 ="<<endl;
   cout<<Polinomio2<<endl;
+  /*Ahora multiplicamos Polinomio1 y Polinomio2*/
+  Polinomio Polinomio3=Polinomio1*Polinomio2;
+  cout<<"Polinomio3 = Polinomio1 * Polinomio2 ="<<endl;
+  cout<<Polinomio3<<endl;
 }
 
 

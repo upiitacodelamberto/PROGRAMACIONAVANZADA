@@ -114,18 +114,6 @@ ostream& operator<<(ostream& ostreamOut,Rac& RacObj){
 	return ostreamOut;	
 }
 
-Rac& Rac::operator*(Rac& RacObj){
-	Rac RacResult;
-	RacResult.n=n*RacObj.n;
-	RacResult.d=d*RacObj.d;
-	RacResult.set_mcd();
-	RacResult.simplificar();
-	Expresion E(new BoxRac(this),new BoxStringOperator('x'),
-				new BoxRac(&RacObj),new BoxRac(&RacResult));
-	E.print();
-	return RacResult;
-}
-
 Rac::Rac(int intNum,int intDen):n(intNum),d(intDen){
 	set_mcd();
 }
@@ -135,16 +123,20 @@ Rac::Rac(){
 
 void Rac::set_mcd(){
 	int M,N,tmp;
-	if(n>d){
-		M=n;N=d;
+	if((n!=0)&&(d!=0)){
+		if(n>d){
+			M=n;N=d;
+		}else{
+			M=d;N=n;
+		}
+		while((tmp=M%N)!=0){ /* M = QN + r */
+			M=N;
+			N=tmp;
+		}/*cuando este while termina, en N se tiene el mcd*/
+		mcd=N;
 	}else{
-		M=d;N=n;
+		mcd=1;/*Para evitar problemas cuando n=0 o d=0*/
 	}
-	while((tmp=M%N)!=0){ /* M = QN + r */
-		M=N;
-		N=tmp;
-	}/*cuando este while termina, en N se tiene el mcd*/
-	mcd=N;
 }
 Rac& Rac::operator+(Rac& RacObj){
 	Rac RacResult;
@@ -152,8 +144,19 @@ Rac& Rac::operator+(Rac& RacObj){
 	RacResult.d=d*RacObj.d;
 	RacResult.set_mcd();
 	RacResult.simplificar();
-	//Expresion E(new BoxRac(this),new BoxStringOperator('+'),
-	//			new BoxRac(&RacObj),new BoxRac(&RacResult));
-	//E.print();
+//	Expresion E(new BoxRac(this),new BoxStringOperator('+'),
+//				new BoxRac(&RacObj),new BoxRac(&RacResult));
+//	E.print();
+	return RacResult;
+}
+Rac& Rac::operator*(Rac& RacObj){
+	Rac RacResult;
+	RacResult.n=n*RacObj.n;
+	RacResult.d=d*RacObj.d;
+	RacResult.set_mcd();
+	RacResult.simplificar();
+//	Expresion E(new BoxRac(this),new BoxStringOperator('x'),
+//				new BoxRac(&RacObj),new BoxRac(&RacResult));
+//	E.print();
 	return RacResult;
 }
