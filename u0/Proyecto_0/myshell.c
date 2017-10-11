@@ -7,7 +7,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
-// Simplifed xv6 shell.
+// Simplificated xv6 shell.
 
 #define MAXARGS 10
 
@@ -38,6 +38,7 @@ struct pipecmd {
 
 int fork1(void);  // Fork but exits on failure.
 struct cmd *parsecmd(char*);
+void echo_(char[]);
 
 // Execute cmd.  Never returns.
 void
@@ -121,10 +122,12 @@ main(void)
 {
   static char buf[100];
   int fd, r;
-
+//  int count=0;
   // Read and run input commands.
   while(getcmd(buf, sizeof(buf)) >= 0){
-    if(buf[0] == 'c' && buf[1] == 'd' && buf[2] == ' '){
+	echo_(buf);
+    
+	if(buf[0] == 'c' && buf[1] == 'd' && buf[2] == ' '){
       // Clumsy but will have to do for now.
       // Chdir has no effect on the parent if run in the child.
       buf[strlen(buf)-1] = 0;  // chop \n
@@ -137,9 +140,10 @@ main(void)
 //      runcmd(parsecmd(buf));
 ////2017.10.11.08.45
 ////    wait(&r);
-  }
+//    count=0;
+  }//end while()
   exit(0);
-}
+}//end main()
 
 //int
 //fork1(void)
@@ -151,6 +155,27 @@ main(void)
 //    perror("fork");
 //  return pid;
 //}
+void
+echo_(char buf[])
+{
+	int count=0;
+	while(buf[count++]!=0);count--;
+//  	printf("\nPrimer NULL esta en count=%d\n",count);
+//  	printf("r\tbuf[r]\n");
+//  	for(r=0;r<count;r++){
+//  		printf("%d\t%c\n",r,buf[r]);
+//	}
+	/*al momento buf[count]==0 deberia ser true*/
+	count--;
+	while((buf[count]==' ')||(buf[count]=='\n')){
+		count--;
+	}/*al salir de este while puede suceder que buf[count] sea ';' en cuyo caso no se hace echo*/
+//	printf("count=%d\n",count);
+//	printf("\"%c\"\t\"%c\"\t\"%c\"\n",buf[count?count-1:count],buf[count],buf[count+1]);
+	if(buf[count]!=';'){
+	  printf("%s",buf);
+	}
+}//end echo_
 
 struct cmd*
 execcmd(void)
