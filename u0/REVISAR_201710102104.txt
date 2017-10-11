@@ -1,0 +1,6 @@
+url de pag. consultada:
+
+https://www.evilsocket.net/2014/02/11/on-windows-syscall-mechanism-and-syscall-numbers-extraction-methods/
+
+http://www.vividmachines.com/shellcode/shellcode.html
+

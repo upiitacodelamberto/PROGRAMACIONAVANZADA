@@ -1,0 +1,10 @@
+Fecha de ultima modificacion de este archivo: 2015.04.14
+Para compilar el shell se puede usar:
+gcc xv6.c -o xv6shell
+
+Una vez compilado el shell, se puede usar con:
+./xv6shell
+
+y hacer algunas pruebas.
+
+Happy Hackings.

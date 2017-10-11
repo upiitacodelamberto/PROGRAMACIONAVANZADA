@@ -77,7 +77,7 @@ void driverPolinomio(void){
   Polinomio Polinomio3=Polinomio1*Polinomio2;
   cout<<"Polinomio3 = Polinomio1 * Polinomio2 ="<<endl;
   cout<<Polinomio3<<endl;
-}
+}//end driverPolinomio()
 
 
 

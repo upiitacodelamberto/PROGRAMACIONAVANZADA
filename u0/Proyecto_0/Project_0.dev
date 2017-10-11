@@ -50,18 +50,8 @@ ProductVersion=1.0.0.0
 AutoIncBuildNr=0
 SyncProduct=1
 
-[Unit1]
-FileName=main.cpp
-CompileCpp=1
-Folder=
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
 [Unit2]
-FileName=diadelasemana.cpp
+FileName=Polinomio.cpp
 CompileCpp=1
 Folder=
 Compile=1
@@ -71,7 +61,17 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit3]
-FileName=Polinomio.cpp
+FileName=myshell.c
+CompileCpp=1
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit1]
+FileName=diadelasemana.cpp
 CompileCpp=1
 Folder=
 Compile=1

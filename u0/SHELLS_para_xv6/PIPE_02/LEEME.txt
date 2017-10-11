@@ -1,0 +1,18 @@
+Fecha de ultima modificacion de este archivo: 2015.04.14
+Para compilar el shell se puede usar:
+gcc sh.c -o myshell
+
+Una vez compilado el shell, se puede usar con:
+./myshell
+
+y hacer algunas pruebas
+
+Happy Hackings.
+
+Para compilar el programa que muestra a Mickey Mouse se puede usar:
+g++ Mickey\ MaouseC++-cpp -o mickey
+
+Una vez compilado podemos correrlo usando:
+./mickey
+
+Relax

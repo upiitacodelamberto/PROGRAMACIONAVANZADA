@@ -122,19 +122,19 @@ Rac::Rac(){
 
 
 void Rac::set_mcd(){
-	int M,N,tmp;
+	int M,N,tmp;/*si numerador!=0 y denominador!=0, usar Algoritmo de Euclides*/
 	if((n!=0)&&(d!=0)){
 		if(n>d){
 			M=n;N=d;
 		}else{
 			M=d;N=n;
-		}
+		}/* ALGORITNMO DE EUCLIDES (300 a.C.) */
 		while((tmp=M%N)!=0){ /* M = QN + r */
 			M=N;
 			N=tmp;
 		}/*cuando este while termina, en N se tiene el mcd*/
 		mcd=N;
-	}else{
+	}else{/*si no, hacer mcd=1*/
 		mcd=1;/*Para evitar problemas cuando n=0 o d=0*/
 	}
 }

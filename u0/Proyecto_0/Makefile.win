@@ -4,8 +4,8 @@
 CPP      = g++.exe
 CC       = gcc.exe
 WINDRES  = windres.exe
-OBJ      = main.o diadelasemana.o Polinomio.o
-LINKOBJ  = main.o diadelasemana.o Polinomio.o
+OBJ      = diadelasemana.o Polinomio.o myshell.o
+LINKOBJ  = diadelasemana.o Polinomio.o myshell.o
 LIBS     = -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib32" -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib32" -static-libgcc DevC++_5.11_Linking_Time/32_Bits/Expresion.o -m32
 INCS     = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include"
 CXXINCS  = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++"
@@ -24,11 +24,11 @@ clean: clean-custom
 $(BIN): $(OBJ)
 	$(CPP) $(LINKOBJ) -o $(BIN) $(LIBS)
 
-main.o: main.cpp
-	$(CPP) -c main.cpp -o main.o $(CXXFLAGS)
-
 diadelasemana.o: diadelasemana.cpp
 	$(CPP) -c diadelasemana.cpp -o diadelasemana.o $(CXXFLAGS)
 
 Polinomio.o: Polinomio.cpp
 	$(CPP) -c Polinomio.cpp -o Polinomio.o $(CXXFLAGS)
+
+myshell.o: myshell.c
+	$(CPP) -c myshell.c -o myshell.o $(CXXFLAGS)
