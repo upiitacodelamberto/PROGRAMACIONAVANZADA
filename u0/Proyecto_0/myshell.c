@@ -7,6 +7,8 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
+#include <windows.h> 
+
 // Simplificated xv6 shell.
 
 #define MAXARGS 10
@@ -123,6 +125,8 @@ main(void)
   static char buf[100];
   int fd, r;
 //  int count=0;
+	STARTUPINFO si;
+	PROCESS_INFORMATION pi;
   // Read and run input commands.
   while(getcmd(buf, sizeof(buf)) >= 0){
 	echo_(buf);
@@ -141,6 +145,47 @@ main(void)
 ////2017.10.11.08.45
 ////    wait(&r);
 //    count=0;
+	if(buf[0] == 'n' && buf[1] == 'o' &&
+		buf[2] == 't' && buf[3] == 'e' && 
+		buf[4] == 'p' && buf[5] == 'a' &&
+		buf[6] == 'd'){
+      // Clumsy but will have to do for now.
+      // Chdir has no effect on the parent if run in the child.
+//      buf[strlen(buf)-1] = 0;  // chop \n
+//      if(chdir(buf+3) < 0)
+//        fprintf(stderr, "cannot cd %s\n", buf+3);
+//      continue;
+
+//		STARTUPINFO si;
+//		PROCESS_INFORMATION pi;
+		ZeroMemory(&si,sizeof(si));
+		si.cb=sizeof(si);
+		ZeroMemory(&pi,sizeof(pi));
+
+		if(!CreateProcess("C:/Windows/notepad.exe",
+			"notepad.exe D:/readme.txt",0,0,0,0,0,0,&si,&pi)){
+			//Could not start process;
+			//Now 'pi.hProcess' contains the process HANDLE, which you can use to wait for it like this:
+			printf("There are some problem(s)\n");
+			WaitForSingleObject(pi.hProcess,INFINITE);
+		}
+    }//end if()
+//    C:/Program Files (x86)/MiKTeX 2.9/miktex/bin/pdflatex.exe
+		if(buf[0] == 'p' && buf[1] == 'd' &&
+			buf[2] == 'f' && buf[3] == 'l' && 
+			buf[4] == 'a' && buf[5] == 't' &&
+			buf[6] == 'e' && buf[7] == 'x'){
+			ZeroMemory(&si,sizeof(si));
+			si.cb=sizeof(si);
+			ZeroMemory(&pi,sizeof(pi));
+//		if(!CreateProcess(L"C:/WINDOWS/notepad.exe",L"notepad.exe c:/readme.txt",0,0,0,0,0,0,&si,&pi))
+			if(!CreateProcess("C:/Program Files (x86)/MiKTeX 2.9/miktex/bin/pdflatex.exe","pdflatex.exe D:/hola.tex",0,0,0,0,0,0,&si,&pi)){
+				//Could not start process;
+				//Now 'pi.hProcess' contains the process HANDLE, which you can use to wait for it like this:
+				printf("There are some problem(s)\n");
+			WaitForSingleObject(pi.hProcess,INFINITE);
+		}		
+		}
   }//end while()
   exit(0);
 }//end main()
