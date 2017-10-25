@@ -119,6 +119,7 @@ getcmd(char *buf, int nbuf)
   return 0;
 }//end getcmd()
 
+#ifdef MY_SHELL
 int
 main(void)
 {
@@ -183,12 +184,14 @@ main(void)
 				//Could not start process;
 				//Now 'pi.hProcess' contains the process HANDLE, which you can use to wait for it like this:
 				printf("There are some problem(s)\n");
-			WaitForSingleObject(pi.hProcess,INFINITE);
-		}		
+			    WaitForSingleObject(pi.hProcess,INFINITE);
+		    }		
 		}
   }//end while()
   exit(0);
 }//end main()
+#endif /* MY_SHELL */
+
 
 //int
 //fork1(void)
