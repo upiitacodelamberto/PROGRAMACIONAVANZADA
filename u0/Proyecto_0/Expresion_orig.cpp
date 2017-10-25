@@ -31,7 +31,6 @@ COORD GetConsoleCursorPosition(HANDLE hConsoleOutput)
     }
 }
 
-std::string OperadorAsignacion="=";
 /* Inicializaciones en alcance de archivo */
 COORD Expresion::COORD_C={0,0};
 std::string BoxStringEqual::equal="=";
@@ -62,59 +61,59 @@ void Expresion::print(){
 	BoxOp1->set_coord(pos_inic);
 	
 	/*Primer operando*/
-	pos=(COORD){(short)pos_inic.X+1,(short)pos_inic.Y};
+	pos={(short)pos_inic.X+1,(short)pos_inic.Y};
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),pos);
 	cout<<BoxOp1->get_Rac()->n;
-	pos=(COORD){shortX,shortY+1};
+	pos={shortX,shortY+1};
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),pos);
 	for(int i=0;i<BoxOp1->get_intLongDBase();i++){
 		cout<<'-';
 	}
-	pos=(COORD){shortX+1,shortY+2};
+	pos={shortX+1,shortY+2};
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),pos);
 	cout<<BoxOp1->get_Rac()->d;
 	
 	/*operador*/
-	pos=(COORD){shortX+BoxOp1->get_intLongDBase()+1,shortY+1};
+	pos={shortX+BoxOp1->get_intLongDBase()+1,shortY+1};
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),pos);
 	cout<<BoxOperador->get_op();
 
 	/*segundo operando*/
-	pos=(COORD){shortX+BoxOp1->get_intLongDBase()+BoxOperador->get_intLongDBase()+3,shortY};
+	pos={shortX+BoxOp1->get_intLongDBase()+BoxOperador->get_intLongDBase()+3,shortY};
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),pos);
 	cout<<BoxOp2->get_Rac()->n;
-	pos=(COORD){shortX+BoxOp1->get_intLongDBase()+BoxOperador->get_intLongDBase()+2,shortY+1};
+	pos={shortX+BoxOp1->get_intLongDBase()+BoxOperador->get_intLongDBase()+2,shortY+1};
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),pos);
 	for(int i=0;i<BoxOp1->get_intLongDBase();i++){
 		cout<<'-';
 	}
-	pos=(COORD){shortX+BoxOp1->get_intLongDBase()+BoxOperador->get_intLongDBase()+3,shortY+2};
+	pos={shortX+BoxOp1->get_intLongDBase()+BoxOperador->get_intLongDBase()+3,shortY+2};
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),pos);
 	cout<<BoxOp2->get_Rac()->d;
 	
 	/*igual*/
-	pos=(COORD){shortX+BoxOp1->get_intLongDBase()+BoxOperador->get_intLongDBase()+
+	pos={shortX+BoxOp1->get_intLongDBase()+BoxOperador->get_intLongDBase()+
 			BoxOp2->get_intLongDBase()+3,shortY+1};
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),pos);
 	cout<<Expresion::BoxIgual->get_op();
 	
 	/*resultado*/
-	pos=(COORD){shortX+BoxOp1->get_intLongDBase()+BoxOperador->get_intLongDBase()+
+	pos={shortX+BoxOp1->get_intLongDBase()+BoxOperador->get_intLongDBase()+
 			BoxOp2->get_intLongDBase()+BoxIgual->get_intLongDBase()+5,shortY};
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),pos);
 	cout<<BoxResult->get_Rac()->n;
-	pos=(COORD){shortX+BoxOp1->get_intLongDBase()+BoxOperador->get_intLongDBase()+
+	pos={shortX+BoxOp1->get_intLongDBase()+BoxOperador->get_intLongDBase()+
 			BoxOp2->get_intLongDBase()+BoxIgual->get_intLongDBase()+4,shortY+1};
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),pos);
 	for(int i=0;i<BoxResult->get_intLongDBase();i++){
 		cout<<'-';
 	}
-	pos=(COORD){shortX+BoxOp1->get_intLongDBase()+BoxOperador->get_intLongDBase()+
+	pos={shortX+BoxOp1->get_intLongDBase()+BoxOperador->get_intLongDBase()+
 			BoxOp2->get_intLongDBase()+BoxIgual->get_intLongDBase()+5,shortY+2};
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),pos);
 	cout<<BoxResult->get_Rac()->d;		
 	
-	pos=(COORD){shortX,shortY+longMaxAlturaDBox};
+	pos={shortX,shortY+longMaxAlturaDBox};
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),pos);
 }//end Expresion::print()
 
@@ -167,7 +166,6 @@ int BoxStringEqual::get_intLongDBase(){
 }
 char BoxStringEqual::get_op(){//Stub
 	return BoxStringEqual::equal[0];
-//   return OperadorAsignacion[0];
 }
 void BoxStringEqual::print(COORD pos_inic){
 //	COORD pos={(short)pos_inic.X,(short)pos_inic.Y};
@@ -219,11 +217,11 @@ void ExpresionASimplificar::print(){
 	COORD pos,pos_inic=GetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE));
 	BoxOp1->set_coord(pos_inic);
 	BoxOp1->print(pos_inic);
-	pos=(COORD){pos_inic.X+BoxOp1->get_intLongDBase()+1,pos_inic.Y+1};
+	pos={pos_inic.X+BoxOp1->get_intLongDBase()+1,pos_inic.Y+1};
 //	this->BoxIgual->print(pos);
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),pos);
 	cout<<"=";
-	pos=(COORD){pos_inic.X+BoxOp1->get_intLongDBase()+BoxIgual->get_intLongDBase()+2,pos_inic.Y};
+	pos={pos_inic.X+BoxOp1->get_intLongDBase()+BoxIgual->get_intLongDBase()+2,pos_inic.Y};
 	BoxOp2->print(pos);
 }
 
@@ -231,12 +229,12 @@ void BoxRac::print(COORD pos_inic){
 	COORD pos={pos_inic.X+1,pos_inic.Y};
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),pos);
 	cout<<get_Rac()->n;
-	pos=(COORD){pos_inic.X,pos_inic.Y+1};
+	pos={pos_inic.X,pos_inic.Y+1};
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),pos);
 	for(int i=0;i<get_intLongDBase();i++){
 		cout<<'-';
 	}
-	pos=(COORD){pos_inic.X+1,pos_inic.Y+2};
+	pos={pos_inic.X+1,pos_inic.Y+2};
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),pos);
 	cout<<get_Rac()->d;
 }
