@@ -24,11 +24,11 @@ Polinomio& Polinomio::operator+(Polinomio& PolObj){
 	}
 	if(grado<=grad){/*si el objeto implicito es el polinomio de menor grado*/
 		for(int i=0;i<grado+1;i++){
-			*(ResPol.A+i)=*(ResPol.A+i)+*(A+i);
+			*(ResPol.A+i)=*(ResPol.A+i)+*(PolObj.A+i);
 		}
 	}else{/*si el segundo operando es el de menor grado*/
 		for(int i=0;i<ResPol.grado+1;i++){
-			*(ResPol.A+i)=*(ResPol.A+i)+*(PolObj.A+i);
+			*(ResPol.A+i)=*(ResPol.A+i)+*(A+i);
 		}
 	}
 	return ResPol;

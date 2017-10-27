@@ -12,6 +12,8 @@ using namespace std;	/* string, cout, endl */
 #include "Expresion.h"
 #include "Polinomio.h"
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
+//#define POLINOMIOS
+
 char *get_dia(int intNumDia);
 /**
  * Devuelve un apuntador a Fecha.
@@ -21,6 +23,7 @@ char *get_dia(int intNumDia);
  */
 Fecha *get_Fecha(int intFecha);
 
+#ifdef POLINOMIOS
 int main(int argc, char** argv) {
 	printf("%s 23 de agosto de 2017\n",get_dia(2));
 	Fecha *F=get_Fecha(20170823);
@@ -58,6 +61,7 @@ int main(int argc, char** argv) {
 
 	return 0;
 }//end main()
+#endif /* POLINOMIOS */
 
 void driverPolinomio(void){
   Rac *unRacPt=new Rac[3];
@@ -73,10 +77,16 @@ void driverPolinomio(void){
   Polinomio Polinomio2=Polinomio1+Polinomio1;
   cout<<"Polinomio2 = Polinomio1 + Polinomio1 ="<<endl;
   cout<<Polinomio2<<endl;
-  /*Ahora multiplicamos Polinomio1 y Polinomio2*/
-  Polinomio Polinomio3=Polinomio1*Polinomio2;
-  cout<<"Polinomio3 = Polinomio1 * Polinomio2 ="<<endl;
+  Polinomio Polinomio3=Polinomio1+Polinomio2;
+  cout<<"/////////////////////////////////////////////"<<endl;
+  cout<<"Polinomio3 = Polinomio1 + Polinomio2"<<endl;
   cout<<Polinomio3<<endl;
+  cout<<"/////////////////////////////////////////////"<<endl;
+  
+  /*Ahora multiplicamos Polinomio1 y Polinomio2*/
+  Polinomio Polinomio4=Polinomio1*Polinomio2;
+  cout<<"Polinomio4 = Polinomio1 * Polinomio2 ="<<endl;
+  cout<<Polinomio4<<endl;
 }//end driverPolinomio()
 
 

@@ -29,7 +29,7 @@ IncludeVersionInfo=0
 SupportXPThemes=0
 CompilerSet=3
 CompilerSettings=0000000100000000000000000
-UnitCount=4
+UnitCount=5
 
 [VersionInfo]
 Major=1
@@ -71,7 +71,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit4]
-FileName=TestPdfLatex.cpp
+FileName=myshell.c
 CompileCpp=1
 Folder=
 Compile=1
@@ -81,7 +81,17 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit3]
-FileName=myshell.c
+FileName=main.cpp
+CompileCpp=1
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit5]
+FileName=TestPdfLatex.cpp
 CompileCpp=1
 Folder=
 Compile=1

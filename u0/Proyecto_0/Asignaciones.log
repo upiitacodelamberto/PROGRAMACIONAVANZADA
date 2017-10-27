@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.11 (MiKTeX 2.9) (preloaded format=pdflatex 2015.9.19)  20 OCT 2017 11:18
+This is pdfTeX, Version 3.1415926-1.40.11 (MiKTeX 2.9) (preloaded format=pdflatex 2015.9.19)  27 OCT 2017 11:03
 entering extended mode
 **./Asignaciones.tex
 
@@ -32,7 +32,8 @@ File: size10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
 )
-No file Asignaciones.aux.
+(D:\Usuario\2017\2017_08_A_2017_12\PROGRAMACION_AVANZADA\PROGRAMACIONAVANZADA_c
+ommited_and_pushed_201708231155\u0\Proyecto_0\Asignaciones.aux)
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 2.
 LaTeX Font Info:    ... okay on input line 2.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 2.
@@ -49,14 +50,14 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 4.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <5> on input line 4.
-[1
+ [1
 
 {C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}]
 (D:\Usuario\2017\2017_08_A_2017_12\PROGRAMACION_AVANZADA\PROGRAMACIONAVANZADA_c
 ommited_and_pushed_201708231155\u0\Proyecto_0\Asignaciones.aux) ) 
 Here is how much of TeX's memory you used:
- 207 strings out of 494053
- 2824 string characters out of 3146179
+ 209 strings out of 494053
+ 3104 string characters out of 3146179
  49862 words of memory out of 3000000
  3582 multiletter control sequences out of 15000+200000
  3948 words of font info for 15 fonts, out of 3000000 for 9000
@@ -65,7 +66,7 @@ Here is how much of TeX's memory you used:
 <C:/Program Fi
 les (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program File
 s (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb>
-Output written on Asignaciones.pdf (1 page, 27719 bytes).
+Output written on Asignaciones.pdf (1 page, 27853 bytes).
 PDF statistics:
  14 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
