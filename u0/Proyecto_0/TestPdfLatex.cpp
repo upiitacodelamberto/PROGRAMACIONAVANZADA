@@ -6,7 +6,7 @@
 #include <windows.h>
 using namespace std;
 
-#define TEST_PDFLATEX
+//#define TEST_PDFLATEX
 #ifdef TEST_PDFLATEX
 int
 main(void)

@@ -10,7 +10,7 @@
 #include <windows.h> 
 
 // Simplificated xv6 shell.
-
+#define MY_SHELL
 #define MAXARGS 10
 
 // All commands have at least a type. Have looked at the type, the code
