@@ -1,7 +1,3 @@
-#include <iostream>		/* cout, ostream*/
-//#include <stdlib.h>	/* malloc() */
-using namespace std;	
-
 #ifndef Rac_h
 #define Rac_h
 
@@ -12,29 +8,23 @@ using namespace std;
      *  @author Lamberto Maza Casas
      *  @version 2018.02.12
      */
-struct Rac {
+class Rac {
 
+ public:
 
     int calc_mcd();
 
     void set_mcd(int MCD);
 
     Rac& operator+(Rac& RacObj);
- 
+
     Rac& operator-(Rac& RacObj);
 
     Rac& operator*(Rac& RacObj);
 
     Rac& operator/(Rac& RacObj);
-    
-    Rac& operator+(int intVal);
-    
-    friend Rac& operator+(int intVal,Rac& RacObj);
-    
+
     friend ostream& operator<<(ostream& ostreamOut, Rac& RacObj);
-    
-//    friend ostream& operator<<=(ostream& ostreamOut,Rac& RacObj);
-	Rac(const Rac&);
 
     Rac(int intNum, int intDen);
 
@@ -42,10 +32,10 @@ struct Rac {
 
     void simplificar();
 
- 
-    int n;		/* numerador */
-    int d;		/* denominador*/
-    int mcd;	/* m\'aximo com\'un divisor*/
-};//end struct Rac
+ public:
+    int n;
+    int d;
+    int mcd;
+};
 
 #endif // Rac_h
