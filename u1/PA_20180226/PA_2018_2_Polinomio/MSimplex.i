@@ -28124,6 +28124,7 @@ struct Polinomio {
 
     Polinomio(int intGrado, Rac * RacPt);
     Polinomio(){ }
+    Polinomio(int){ }
 
     int grado;
     Rac * A;
@@ -28131,13 +28132,7 @@ struct Polinomio {
 # 4 "Main_simplex.cpp" 2
 # 1 "cloak.h" 1
 # 5 "Main_simplex.cpp" 2
-
-
-
-
-
-
-
+# 13 "Main_simplex.cpp"
 using namespace std;
 
 int main(){
@@ -28160,8 +28155,8 @@ int main(){
 
 
 
- Polinomio Fz(4,Cj);
- cout<<Fz<<endl;
+ Polinomio F1(4,Cj);
+ cout<<F1<<endl;
  Rac *rPt1=new Rac[5],*rPt2=new Rac[5];
 
 
@@ -28169,7 +28164,7 @@ int main(){
 
 
     Rac Arr1[]={(Rac)
-    0, r21, r22, r23, r24, r25,
+    0, r11, r12, r13, r14, r15,
     (Rac)0};
     for(int i=0;i<5;i++){
      *(rPt1+i)= Arr1[i+1];
@@ -28184,16 +28179,23 @@ int main(){
     0, r21, r22, r23, r24, r25,
     (Rac)0};
     for(int i=0;i<5;i++){
-     *(rPt1+i)= Arr2[i+1];
+     *(rPt2+i)= Arr2[i+1];
     }
 
- Polinomio F1(4,rPt1),F2(4,rPt2);
- cout<<F1<<endl;
+ Polinomio F2(4,rPt1),F3(4,rPt2);
  cout<<F2<<endl;
+ cout<<F3<<endl;
 
- Polinomio *PolPt=new Polinomio[2];
- *PolPt=F1;
- *(PolPt+1)=F2;
+ Polinomio *PolPt=new Polinomio[3];
+
+
+    Polinomio Arr3[]={(Polinomio)
+    0, F1, F2, F3,
+    (Polinomio)0};
+    for(int i=0;i<3;i++){
+     *(PolPt+i)= Arr3[i+1];
+    }
+
  cout<<*(PolPt+1)<<endl;
  return 0;
 }

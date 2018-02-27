@@ -8,7 +8,7 @@
 #define OP1(state, ...) DEC(state), r1 ## state, __VA_ARGS__	/* 0, r11, r12, r13, ..., r19 REVISAR preprocesando */
 #define OP2(state, ...) DEC(state), r2 ## state, __VA_ARGS__	/* 0, r21, r22, r23, ... */
 #define OP3(state, ...) DEC(state), F ## state, __VA_ARGS__     /*0, F1, F2, F3, ... */
-//#define MACRO(state) state
+#define MACRO(state) state
 
 using namespace std; /*cout*/
 
@@ -32,8 +32,8 @@ int main(){
                                 // En la clase Rac fuen necesario agregar el 
                                 // constructor Rac::Rac(int){ }
 
-	Polinomio Fz(4,Cj);
-	cout<<Fz<<endl;
+	Polinomio F1(4,Cj);
+	cout<<F1<<endl;
 	Rac *rPt1=new Rac[5],*rPt2=new Rac[5];
 //	*(rPt1+0)=NdV(r1,1);
 //	*(rPt1+1)=NdV(r1,2);/*    *(Cj+1)=c2;       */
@@ -41,7 +41,7 @@ int main(){
 //	*(rPt1+3)=NdV(r1,4);
 //	*(rPt1+4)=NdV(r1,5);
     Rac Arr1[]={(Rac)
-    EVAL(WHILE(PRED, OP2, 5,))
+    EVAL(WHILE(PRED, OP1, 5,))
     (Rac)0};
     for(int i=0;i<5;i++){
     	*(rPt1+i)= Arr1[i+1];
@@ -59,17 +59,17 @@ int main(){
     	*(rPt2+i)= Arr2[i+1];
     }
 	
-	Polinomio F1(4,rPt1),F2(4,rPt2);
-	cout<<F1<<endl;
+	Polinomio F2(4,rPt1),F3(4,rPt2);
 	cout<<F2<<endl;
+	cout<<F3<<endl;
 	
-	Polinomio *PolPt=new Polinomio[2];
-//	*PolPt=F1;
-//	*(PolPt+1)=F2;
+	Polinomio *PolPt=new Polinomio[3];
+//	*PolPt=F2;
+//	*(PolPt+1)=F3;
     Polinomio Arr3[]={(Polinomio)
-    EVAL(WHILE(PRED, OP3, 2,))
+    EVAL(WHILE(PRED, OP3, 3,))
     (Polinomio)0};
-    for(int i=0;i<2;i++){
+    for(int i=0;i<3;i++){
     	*(PolPt+i)= Arr3[i+1];
     }
     
