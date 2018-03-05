@@ -80,7 +80,7 @@ int main(int argc, char** argv) {
                *factor1, /*Racianal factor1*/
 			   Pfpivc1,  /*Polinomio fila pivote c/ elemento pivote 1*/
 			   pnfpiv,   /*Polinomio no fila pivote*/
-			   *factor2, /*Racianal factor2*/
+			   *factor2, /*Racional factor2*/
 			   Pnfpivc0);/*Polinomio no fila pivote con 0 arriba o abajo del 1*/
 #endif /*AVANCE*/
 #endif /*SECOND_PROOF*/

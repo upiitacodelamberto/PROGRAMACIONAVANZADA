@@ -8,10 +8,12 @@
 #define OP1(state, ...) DEC(state), r1 ## state, __VA_ARGS__	/* 0, r11, r12, r13, ..., r19 REVISAR preprocesando */
 #define OP2(state, ...) DEC(state), r2 ## state, __VA_ARGS__	/* 0, r21, r22, r23, ... */
 #define OP3(state, ...) DEC(state), F ## state, __VA_ARGS__     /*0, F1, F2, F3, ... */
+#define OP4(state, ...) DEC(state), rac ## state, __VA_ARGS__   /* 0, rac1, rac2, ...,rac7*/
 #define MACRO(state) state
 
 using namespace std; /*cout*/
 
+#ifdef USO_DE_CLOAK 
 int main(){
 	Rac c1(2,1),c2(3,1),c3(0,1),c4(0,1),c5(0,1);     // <--------
 	Rac r11(2,1),r12(1,1),r13(1,1),r14(0,1),r15(4,1);
@@ -74,8 +76,36 @@ int main(){
     }
     
 	cout<<*(PolPt+1)<<endl;
+	
+/*******************************************************/	
+	Rac rac1(2,1),rac2(1,3),rac3(1,2),rac4(3,1),rac5(4,3),rac6(4,2),
+	    rac7(1,10);
+	Rac *myPt=new Rac[7];
+//	*(myPt+0)=rac1;
+//	*(myPt+1)=rac2;
+//	.
+//	.
+//	.
+//	*(myPt+6)=rac7;
+	Rac myArr[]={(Rac)
+    EVAL(WHILE(PRED, OP4, 7,)) /*0, rac1,rac2,rac3, ..., rac7, */
+    (Rac)0};
+	for(int i=0;i<7;i++){
+    	*(myPt+i)= myArr[i+1];
+    }
+	cout<<*(myPt+6)<<endl;
+	
+	
+	
+	
+	
 	return 0;
 }//end main
+#endif /*USO_DE_CLOAK*/
+
+
+
+
 
 #undef PRED
 #undef OP
