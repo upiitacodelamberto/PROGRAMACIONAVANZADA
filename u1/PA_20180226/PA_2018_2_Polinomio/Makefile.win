@@ -4,8 +4,8 @@
 CPP      = g++.exe -D__DEBUG__
 CC       = gcc.exe -D__DEBUG__
 WINDRES  = windres.exe
-OBJ      = main.o Rac.o Polinomio.o CalcDSimplex.o Main_simplex.o comando0.o TestShell.o
-LINKOBJ  = main.o Rac.o Polinomio.o CalcDSimplex.o Main_simplex.o comando0.o TestShell.o
+OBJ      = main.o Rac.o Polinomio.o CalcDSimplex.o Main_simplex.o comando0.o TestShell.o Pol_Directory.o Directory_entry.o String_Tokenizer.o
+LINKOBJ  = main.o Rac.o Polinomio.o CalcDSimplex.o Main_simplex.o comando0.o TestShell.o Pol_Directory.o Directory_entry.o String_Tokenizer.o
 LIBS     = -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib32" -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib32" -static-libgcc -m32 -g3
 INCS     = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include"
 CXXINCS  = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++"
@@ -44,3 +44,12 @@ comando0.o: comando0.cpp
 
 TestShell.o: TestShell.cpp
 	$(CPP) -c TestShell.cpp -o TestShell.o $(CXXFLAGS)
+
+Pol_Directory.o: Pol_Directory.cpp
+	$(CPP) -c Pol_Directory.cpp -o Pol_Directory.o $(CXXFLAGS)
+
+Directory_entry.o: Directory_entry.cpp
+	$(CPP) -c Directory_entry.cpp -o Directory_entry.o $(CXXFLAGS)
+
+String_Tokenizer.o: String_Tokenizer.cpp
+	$(CPP) -c String_Tokenizer.cpp -o String_Tokenizer.o $(CXXFLAGS)

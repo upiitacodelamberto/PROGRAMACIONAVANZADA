@@ -6,7 +6,7 @@ using namespace std;
 #define MAXSIZE	1000
 int last_backslash(TCHAR*);
 void get_substr(TCHAR* cmdL,int intCantidad,char charBuf[MAXSIZE]);
-#define TEST_SHELL
+//#define TEST_SHELL
 #ifdef TEST_SHELL
 int main(){
   TCHAR*              cmdline;
@@ -14,6 +14,7 @@ int main(){
   PROCESS_INFORMATION process_info;
   char charBuffer[MAXSIZE];
   char exepath[MAXSIZE];
+  char str[MAXSIZE];
 
   cmdline = GetCommandLine();	/*obtiene la orden o comando equivalente de CLI*/
   								/*CLI: Command Line Interface*/
@@ -22,14 +23,17 @@ int main(){
   printf("intCantidad=%i\n",intCantidad);
   get_substr(cmdline,intCantidad,charBuffer);
   printf("%s\n",charBuffer);
+  char workspace[]="workspace.txt";
   sprintf(exepath,"%s%s",charBuffer,"comando0.exe");
-  printf("%s\n",exepath);
+  sprintf(str,"%s ./%s %s %s %s","comando0.exe",workspace,"var1","+","var2");
+  printf("IMPRIMIR COMANDO A EJECUTAR PASANDO ARGUMENTOS:\n");	
+  printf("%s\n",str);
   fill_n( (char*)&process_info, sizeof( PROCESS_INFORMATION ), 0 );
   fill_n( (char*)&startup_info, sizeof( STARTUPINFO ),         0 );
   startup_info.cb = sizeof( STARTUPINFO );
   if (!CreateProcess(
          exepath,
-         exepath,
+         str,
          NULL,
          NULL,
          TRUE,
