@@ -30,11 +30,34 @@ void Pol_Directory::load_data(const std::string& source_name){
 		string coeffs;
 		while(getline(in,name)){
 			if(getline(in,coeffs)){
+//				cout<<"name="<<name<<" coeffs="<<coeffs<<endl;
 				add(name,coeffs);
 			}
 		}
 		in.close();
 	}
+}
+
+/** Modificar el contenido asociado con el nombre de la variable 
+   var_name por el de coeffs, o agregar una nueva entrada con el 
+   nombre de variable var_name y los coeficientes coeffs.
+   @param var_name El nombre de la variable
+   @param coeffs Los nuevos coeficientes
+   @return Los coeficientes antiguos o una cadena vacia si esta 
+           es una nueva entrada
+*/
+std::string Pol_Directory::add_or_change_entry(const std::string& var_name,const std::string& coeffs)
+{
+	string old_coeffs="";
+	int index=find(var_name);
+	if(index!=-1){
+		old_coeffs=the_directory[index].coeffs;
+		the_directory[index].coeffs=coeffs;
+	}else{
+		add(var_name,coeffs);
+	}
+	modified=true;
+	return old_coeffs;
 }
 
 /** Adicionar un nuevo par nombre-coeffs al directorio.
@@ -86,4 +109,18 @@ int Pol_Directory::find(const std::string& var_name) const {
 	return -1;
 }
 
-
+/** Funci\'on para guardar el directorio.
+    pre: el directorio ha sido cargado con datos
+    post: contiene el directorio vuelto a escribir en el archivo 
+          bajo la forma par var_name-coeffs en l\'ineas adyacentes.
+          modified se vuelve a colocar en false.
+*/
+void Pol_Directory::save(){
+	if(modified){// if not modified do nothing
+		ofstream out(source_name.c_str());
+		for(int i=0;i<size;i++){
+			out<<the_directory[i].var_name<<endl;
+			out<<the_directory[i].coeffs<<endl;
+		}
+	}
+}

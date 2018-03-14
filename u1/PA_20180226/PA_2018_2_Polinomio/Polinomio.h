@@ -18,6 +18,8 @@ struct Polinomio {
 //    FcnDTrans& operator/(Polinomio& PolObj);
 
     friend ostream& operator<<(ostream& ostreamObj, Polinomio& PolObj);
+    
+    std::string string_show();
 
     Polinomio(int intGrado, Rac * RacPt);
     Polinomio(){ }

@@ -172,7 +172,14 @@ Rac& operator+(int intVal,Rac& RacObj)
 	return r;
 }
 
-
+std::string Rac::string_show(){
+//	string& result;
+	char str[128];
+	sprintf(str,"%d/%d",n,d);
+	string Result=string(str);
+//	string& result=Result;
+	return Result; 
+}
 
 
 

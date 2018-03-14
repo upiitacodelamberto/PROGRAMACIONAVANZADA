@@ -17,6 +17,9 @@ class String_Tokenizer{
     the_source(source), the_delim(delim), start(0), end(0) {
     find_next();
   }
+  String_Tokenizer():the_source(""), the_delim(" "), start(0), end(0) {
+  	find_next();
+  }
 /** Determinar si existen mas tokens
     @return true si existen mas tokens
   */

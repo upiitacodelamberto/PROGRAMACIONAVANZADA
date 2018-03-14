@@ -1,6 +1,8 @@
 #include <iostream>
 //#include "Rac.h"
 #include "Polinomio.h"
+#include "cloak.h"
+
 using namespace std; /*cout*/
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
 void presentar(Polinomio& Pfpiv,    /*Polinomio fila pivote*/
@@ -11,8 +13,13 @@ void presentar(Polinomio& Pfpiv,    /*Polinomio fila pivote*/
 			   Polinomio& Pnfpivc0);/*Polinomio no fila pivote con 0 arriba o abajo del 1*/
 
 //#define INITIAL_PROOF
-#define SECOND_PROOF
+//#define CLASE_LUNES
+//#define SECOND_PROOF
 #ifdef CLASE_LUNES
+#define PRED(state, ...) BOOL(state)
+#define OP4(state, ...) DEC(state), rac ## state, __VA_ARGS__   /* 0, rac1, rac2, ...,rac7*/
+#define MACRO(state) state
+
 int main(int argc, char** argv) {
 #ifdef INITIAL_PROOF
 	Rac rac1;rac1.n=-30;rac1.d=60;rac1.mcd=30;
@@ -39,6 +46,30 @@ int main(int argc, char** argv) {
 	cout<<"P="<<endl<<P<<endl;
 	Polinomio Q=P+P; 
 	cout<<"Q=P+P"<<endl<<Q<<endl;
+	
+	rac1=Rac(1,2);rac2=Rac(2,3);rac3=Rac(3,4);
+	Rac racArray1[]={(Rac)
+	EVAL(WHILE(PRED,OP4,3,))
+	(Rac)0};
+	Rac *newRacPt=new Rac[3];
+	for(int k=0;k<3;k++){
+		*(newRacPt+k)=racArray1[k+1];
+	}
+	Polinomio Operand1(2,newRacPt);
+	rac1=Rac(4,1);rac2=Rac(3,1);rac3=Rac(2,1);Rac rac4(1,1);
+	Rac racArray2[]={(Rac)
+	EVAL(WHILE(PRED,OP4,4,))
+	(Rac)0};
+	Rac *nuevoRacPt=new Rac[4];
+	for(int k=0;k<4;k++){
+		*(nuevoRacPt+k)=racArray2[k+1];
+	}
+	Polinomio Operand2(3,nuevoRacPt);
+	Polinomio ResultadoDLaSuma=Operand1+Operand2;
+	cout<<"ResultadoDLaSuma="<<endl;
+	cout<<ResultadoDLaSuma<<endl;// [1/2, 2/3, 3/4] + [4, 3, 2, 1] = [4, 7/2, 8/3, 7/4]
+	
+	
 	Rac Rac_PT1[]={Rac(60,1),Rac(40,1),Rac(50,1),Rac(0,1),Rac(-1,1),Rac(0,1),Rac(1,1),Rac(100,1)};
 	Rac *f1=new Rac(1,2);
 	Polinomio PFactor1(0,f1);

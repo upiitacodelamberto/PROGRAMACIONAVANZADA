@@ -42,7 +42,8 @@ struct Rac {
     Rac(int){ }
 
     void simplificar();
-
+    
+	std::string string_show();
  
     int n;		/* numerador */
     int d;		/* denominador*/
