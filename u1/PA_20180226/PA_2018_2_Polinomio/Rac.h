@@ -1,3 +1,5 @@
+/** Rac.h - Una clase para representar n\'umeros racionales.
+*/
 #include <iostream>		/* cout, ostream*/
 //#include <stdlib.h>	/* malloc() */
 using namespace std;	

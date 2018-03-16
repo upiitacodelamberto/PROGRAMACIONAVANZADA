@@ -1,3 +1,5 @@
+/** Polinomio.h - Una clase para representar polinomios.
+*/
 #include <iostream>		/* cout, ostream*/
 //#include <stdlib.h>	/* malloc() */
 using namespace std;
