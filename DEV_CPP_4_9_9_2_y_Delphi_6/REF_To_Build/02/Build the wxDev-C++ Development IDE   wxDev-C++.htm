@@ -1,0 +1,340 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" dir="ltr" lang="en"><head>
+  <title>Build the wxDev-C++ Development IDE | wxDev-C++</title>
+  <link rel="icon" href="http://wxdsgn.sourceforge.net/misc/favicon.png" type="image/png">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="shortcut icon" href="http://wxdsgn.sourceforge.net/misc/favicon.ico" type="image/x-icon">
+  <link type="text/css" rel="stylesheet" media="all" href="Build%20the%20wxDev-C++%20Development%20IDE%20%20%20wxDev-C++%20Archivos/fckeditor.css">
+<link type="text/css" rel="stylesheet" media="all" href="Build%20the%20wxDev-C++%20Development%20IDE%20%20%20wxDev-C++%20Archivos/node.css">
+<link type="text/css" rel="stylesheet" media="all" href="Build%20the%20wxDev-C++%20Development%20IDE%20%20%20wxDev-C++%20Archivos/defaults.css">
+<link type="text/css" rel="stylesheet" media="all" href="Build%20the%20wxDev-C++%20Development%20IDE%20%20%20wxDev-C++%20Archivos/system.css">
+<link type="text/css" rel="stylesheet" media="all" href="Build%20the%20wxDev-C++%20Development%20IDE%20%20%20wxDev-C++%20Archivos/system-menus.css">
+<link type="text/css" rel="stylesheet" media="all" href="Build%20the%20wxDev-C++%20Development%20IDE%20%20%20wxDev-C++%20Archivos/user.css">
+<link type="text/css" rel="stylesheet" media="all" href="Build%20the%20wxDev-C++%20Development%20IDE%20%20%20wxDev-C++%20Archivos/style.css">
+    <script type="text/javascript"> </script>
+</head>
+
+<body>
+
+<table id="header" cellspacing="0" cellpadding="0" border="0">
+  <tbody><tr>
+    <td id="logo">
+      <a href="http://wxdsgn.sourceforge.net/" title="Home"><img src="Build%20the%20wxDev-C++%20Development%20IDE%20%20%20wxDev-C++%20Archivos/logo.png" alt="Home"></a>                </td>
+    <td id="menu">
+                      </td>
+  </tr>
+  <tr>
+    <td colspan="2"><div></div></td>
+  </tr>
+</tbody></table>
+
+<table id="content" cellspacing="0" cellpadding="0" border="0">
+  <tbody><tr>
+    <td id="sidebar-left">
+        <div class="block block-search" id="block-search-0">
+    <h2 class="title">Search</h2>
+    <div class="content"><form action="/?q=node/22" accept-charset="UTF-8" method="post" id="search-block-form">
+<div><div class="container-inline">
+  <div class="form-item" id="edit-search-block-form-1-wrapper">
+ <input maxlength="128" name="search_block_form" id="edit-search-block-form-1" size="15" title="Enter the terms you wish to search for." class="form-text" type="text">
+</div>
+<input name="op" id="edit-submit" value="Search" class="form-submit" type="submit">
+<input name="form_build_id" id="form-46b55a7dc58f1fb34f5fe5a6af41dfd2" value="form-46b55a7dc58f1fb34f5fe5a6af41dfd2" type="hidden">
+<input name="form_id" id="edit-search-block-form" value="search_block_form" type="hidden">
+</div>
+
+</div></form>
+</div>
+ </div>
+  <div class="block block-user" id="block-user-1">
+    <h2 class="title">Navigation</h2>
+    <div class="content"><ul class="menu"><li class="leaf first"><a href="http://wxdsgn.sourceforge.net/?q=node/20" title="News Archive">News</a></li>
+<li class="leaf"><a href="http://wxdsgn.sourceforge.net/?q=node/2" title="Frequently Asked Questions">FAQ</a></li>
+<li class="leaf"><a href="http://wxdsgn.sourceforge.net/?q=node/3" title="wxDev-C++ Screenshots">Screenshots</a></li>
+<li class="leaf"><a href="http://wxdsgn.sourceforge.net/?q=node/4" title="Downloads">Downloads</a></li>
+<li class="leaf"><a href="http://wxdsgn.sourceforge.net/?q=node/5" title="Change Log">Change Log</a></li>
+<li class="expanded active-trail"><a href="http://wxdsgn.sourceforge.net/?q=node/6" title="Tutorials">Tutorials</a><ul class="menu"><li class="leaf first"><a href="http://wxdsgn.sourceforge.net/?q=node/16" title="Submitting Tutorials">Submitting Tutorials</a></li>
+<li class="leaf"><a href="http://wxdsgn.sourceforge.net/?q=node/7" title="Accessing the wxDev-C++ Sources from SVN">Accessing SVN</a></li>
+<li class="leaf active-trail"><a href="http://wxdsgn.sourceforge.net/?q=node/22" title="Build the wxDev-C++ Development IDE" class="active">Build Development IDE</a></li>
+<li class="leaf"><a href="http://wxdsgn.sourceforge.net/?q=node/9" title="Creating a DevPak for wxDev-C++">Creating DevPaks</a></li>
+<li class="leaf"><a href="http://wxdsgn.sourceforge.net/?q=node/10" title="Creating custom components for wxDev-C++">Custom components</a></li>
+<li class="leaf"><a href="http://wxdsgn.sourceforge.net/?q=node/11" title="Extended wxDev-C++ Tutorial">Extended Example</a></li>
+<li class="leaf"><a href="http://wxdsgn.sourceforge.net/?q=node/13" title="Minimal Example">Minimal Example</a></li>
+<li class="leaf"><a href="http://wxdsgn.sourceforge.net/?q=node/14" title="OpenGL with wxDev-C++">OpenGL</a></li>
+<li class="leaf"><a href="http://wxdsgn.sourceforge.net/?q=node/15" title="Setting Up wxDev-C++ for compiling with Visual C++ 2005">wxDev-C++ &amp; Visual C++ 2005</a></li>
+<li class="leaf last"><a href="http://wxdsgn.sourceforge.net/?q=node/12" title="Integrating wxDev-C++ with Visual Studio 2003">wxDev-C++ &amp; Visual Studio 2003</a></li>
+</ul></li>
+<li class="leaf"><a href="http://wxdsgn.sourceforge.net/?q=node/18" title="Donations">Donate</a></li>
+<li class="leaf"><a href="http://wxdsgn.sourceforge.net/?q=node/19" title="wxDev-C++ Developers">Developer Team</a></li>
+<li class="leaf last"><a href="http://wxdsgn.sourceforge.net/?q=node/21" title="Getting Help / Links">Help and Links</a></li>
+</ul></div>
+ </div>
+<a href="http://sourceforge.net/" target="_blank"><img src="Build%20the%20wxDev-C++%20Development%20IDE%20%20%20wxDev-C++%20Archivos/sflogo.png" alt="SourceForce.net logo" style="vertical-align: bottom" width="88" height="31"></a>
+    </td>    <td valign="top">
+            <div id="main">
+        <div class="breadcrumb"><a href="http://wxdsgn.sourceforge.net/">Home</a> » <a href="http://wxdsgn.sourceforge.net/?q=node/6" title="Tutorials">Tutorials</a></div>        <h1 class="title">Build the wxDev-C++ Development IDE</h1>
+        <div class="tabs"></div>
+                          <div class="node">
+            <span class="submitted"></span>
+    <div class="taxonomy"></div>
+    <div class="content"><p><em>Tony Reina. <i>Updated by Esteban Aguilar on June 2008.</i></em></p>
+<p class="tutorial">1. Download the latest wxDev-C++ source from SVN:<br>
+<br>
+ &nbsp;</p>
+<h1 style="margin-bottom: 0px">SVN access via SourceForge</h1>
+<p>
+ All wxDev-C++ sources are kept on a Subversion repository on 
+SourceForge. You will need to download all the sources using a SVN 
+client (we use TortoiseSVN). Follow the <a href="http://wxdsgn.sourceforge.net/?q=node/7">SVN Access tutorial</a><br>
+             <br>
+ You will also need additional packages which are in the directory called devcpp_libs.7z. The files can be downloaded from <a href="http://sourceforge.net/projects/wxdsgn/files/wxDev-C%2B%2B/webpage/setup_files/devcpp_libs.7z">here.</a>
+ Unzip these files to the top directory of your SVN checkout. They 
+include the Delphi packages for JEDI JCL/JVCL, SynEdit, ThemeManager, 
+ExtLib, GraphicEx, FastCode, and FastMM.</p>
+<p> 2. Download and install Borland Delphi 6 Personal Edition.<br>
+<br>
+ Delphi 6 PE is a free Pascal compiler and IDE offered by Delphi and 
+exists on several mirrors (although not on the official Borland site 
+anymore).<br>
+<br>
+If you can't find Delphi 6 PE, then you may need to search for Delphi 7 
+PE and take note of the Delphi 7 tips in the rest of this tutorial.<br>
+             <br>
+ To install, you'll need to register with Borland (registration is free) and request a key to install. Go to <a href="http://www.borland.com/products/downloads/download_delphi.html">http://www.borland.com/products/downloads/download_delphi.html</a> and click on the "Keys Only, Personal, 6.0" link at the bottom of the page.<br>
+<br>
+ The installer is usually built in the directory C:\Program 
+Files\Borland Delphi Personal Installer. You'll need to run the file 
+called "INSTALL.EXE".</p>
+<h2>Notes for Delphi 7</h2>
+<ul>
+<li>The version 6 patches and updates do not apply, so do not try to install these.
+</li>
+<li>The oldest version of JVCL available now appears to be 3.39 Select the Delphi 7 tab.
+</li>
+<li>Theme Manager is built in to Delphi 7, so do not try to install this.
+</li>
+<li>ExtLib_D6.dpk: There is no Delphi 7 version. On compile there are 502 warnings, mostly for Unsafe Type.
+</li>
+<li>SynEdit_D7_PE.dpk replaces SynEdit_D6_PE.dpk
+</li>
+<li>ClassBrowsing.dpk is at [Subversion repository on 
+SourceForge]\wxdsgn\wxdevcpp\source\packages\Parser. On compile there 
+are 415 warnings, mostly for Unsafe Type.
+</li>
+<li>The GExperts file is GExperts for Delphi 7, file name is GXD7-133.exe.</li>
+<li>source/packages/DevCpp_D7.dpk replaces DevCpp_D6.dpk. Error: cannot find DevCpp_D7.res. Recreated.
+</li>
+</ul>
+<p> 3. Download and install the Delphi 6 Personal Edition Update #2 (File D6_Upd2_per)<br>
+<br>
+<b>NOTE: This is not needed for Delphi 7</b><br>
+ <a href="http://sourceforge.net/projects/wxdsgn/files/wxDev-C%2B%2B/webpage/setup_files/D6_Upd2_per.exe">D6_Upd2_per.exe</a></p>
+<p> 4. Download and install Delphi 6 Personal Edition Pascal RunTime Library Patch #2 (File del6_per_rtl2)<br>
+<br>
+<b>NOTE: This is not needed for Delphi 7</b></p>
+<p> <a href="http://sourceforge.net/projects/wxdsgn/files/wxDev-C%2B%2B/webpage/setup_files/del6_per_rtl2.exe">del6_per_rtl2.exe</a></p>
+<p> 5. Download and install Delphi 6 Personal Edition Pascal RunTime Library Patch #3 (File del6per_rtl3).<br>
+<br>
+<b>NOTE: This is not needed for Delphi 7</b><br>
+ <a href="http://sourceforge.net/projects/wxdsgn/files/wxDev-C%2B%2B/webpage/setup_files/Delphi6_RTL3.exe">Delphi6_RTL3.exe</a><br>
+             <br>
+ &nbsp;</p>
+<p><strong>-Vista Only-</strong></p>
+<p>If you're running Windows Vista, you need to give complete folder permissions in the Delphi6 installation folder for "Everyone".</p>
+<p><img alt="" src="Build%20the%20wxDev-C++%20Development%20IDE%20%20%20wxDev-C++%20Archivos/vista_permissions.jpg">&nbsp;</p>
+<p>Also, if you're using 64bit version of Vista, you need to disable 
+Vista DEP feature for delphi: right click "computer" at the start menu, 
+select "Properties", then "Advanced system settings" on the left tasks 
+panel. After that choose "Settings" in the "Performace" section of the 
+dialog. There, add the Delphi6 executable to the list of exceptions for 
+DEP.</p>
+<p><img alt="" src="Build%20the%20wxDev-C++%20Development%20IDE%20%20%20wxDev-C++%20Archivos/dep.jpg"></p>
+<p>Delphi6 and Vista don't play too well together, so expect some 
+problems from time to time. For example, it is probable that you can't 
+open the IDE by double-clicking a project file; you'll have to open the 
+IDE first and then select to open projects from there.</p>
+<p><strong>At this point, I would run Delphi 6 once and go through the 
+registration procedure. You essentially just need to get Delphi to run 
+once so that it sets up the environment variables.<br>
+<br>
+ You should reboot Windows just to make sure that the Delphi environment variables are visible to later installations.</strong></p>
+<p> 6. Install JEDI JCL and JVCL. Download <a href="http://downloads.sourceforge.net/jvcl/JVCL333CompleteJCL1101-Build2725.zip?modtime=1190239418&amp;big_mirror=0">release 3.33 of JVCL from </a><a href="http://homepages.codegear.com/jedi/jvcl/">their website</a>
+ (newer versions "could" work). That package contains both JCL and JVCL 
+libraries required for wx-DevCpp. Create a folder for shared libraries 
+that you will not move around, for example "$USERNAME\devcpp_libs" 
+(where $USERNAME is the user's root folder),  and uncompress the zip 
+there. Run the Install.bat file in the JCL folder first. On the dialog, 
+select the "Delphi 6" tab and be sure to set both BPL and DCP paths to 
+"C:\Program Files\Borland\Delphi6\Projects\Bpl" or the equivalent of 
+your Delphi installation. Then choose "install".</p>
+<p>
+ <img alt="" src="Build%20the%20wxDev-C++%20Development%20IDE%20%20%20wxDev-C++%20Archivos/jcl.jpg"><br>
+             <br>
+ &nbsp;</p>
+<p>Now run install.bat at the JVCL folder, and on the 3rd dialog on the 
+wizard, check the "Build Packages" option, and confirm that BPL and DCP 
+paths point to the same folder as they did with the JCL installer. Then 
+finish the wizard.</p>
+<p>
+ <img alt="" style="null" src="Build%20the%20wxDev-C++%20Development%20IDE%20%20%20wxDev-C++%20Archivos/jvcl.png"></p>
+<p>
+ 7. Download the <a href="http://sourceforge.net/projects/wxdsgn/files/wxDev-C%2B%2B/webpage/setup_files/devcpp_libs.7z">devcpp_libs.7z</a> package and extract it to the same folder were you stored the JCL and JVCL libraries.</p>
+<p>
+ 8. Install Theme Manager from the wxDev-C++ source: devcpp_libs\theme\Packages\ThemeManager6.dpk<br>
+<b>NOTE: This is not needed for Delphi 7</b><br>
+<br>
+ Double-clicking on the DPK file opens Delphi 6 and loads the package. A
+ popup window should be displayed with the option to "Install" the 
+package.<br>
+<br>
+ <img alt="" src="Build%20the%20wxDev-C++%20Development%20IDE%20%20%20wxDev-C++%20Archivos/Screen3.htm"><br>
+             <br>
+ Click the compile button. Then click the install button and wait for 
+Delphi to verify that the package has been successfully installed. Then 
+simply exit Delphi and continue with the next step.</p>
+<p> Some explanations of Delphi file extensions (taken from the Emu Loader website):<br>
+<br>
+ .DPK<br>
+<br>
+ A Delphi package file. It's used to define compilation configurations. 
+If you find this file or any component package, install from this file. 
+It's easier.<br>
+<br>
+ .DPR<br>
+<br>
+ A Delphi Project File. The main file for all Delphi projects. It contains all of the files a project uses.<br>
+<br>
+ .PAS<br>
+<br>
+ This is where the lines of code are written. The format is in the Pascal language.<br>
+<br>
+ .DFM<br>
+<br>
+ This file holds the forms (windows) used in the project, usually linked
+ to its .pas counterpart that has the same name. The default format is 
+in plain text.<br>
+<br>
+ .DCU<br>
+<br>
+ This is the compile generated unit. When you compile a project, this 
+file will be created for every file in the source code and for the 
+components. It works just like the C language, which also creates .obj 
+files.</p>
+<p> 9. Install extlib from devcpp_libs\extlib\ExtLib_D6.dpk<br>
+&nbsp;<br>
+ As with Theme Manager (step 8), Delphi 6 will start and load the 
+package. Just click on the install button in the popup window and wait 
+for Delphi to tell you that things successfully installed.<br>
+<br>
+ &nbsp;</p>
+<p>10. Install SynEdit from devcpp_libs\synedit\Packages\SynEdit_D6_PE.dp&nbsp;<br>
+ <img alt="" src="Build%20the%20wxDev-C++%20Development%20IDE%20%20%20wxDev-C++%20Archivos/Screen6.htm"><br>
+             <br>
+ 11. Install Class Browser from packages\Parser\ClassBrowsing.dpk<br>
+<br>
+ <img alt="" src="Build%20the%20wxDev-C++%20Development%20IDE%20%20%20wxDev-C++%20Archivos/Screen7.htm"><br>
+             <br>
+ 12. Install GExperts for Delphi 6 <a href="http://www.gexperts.org/download.html">http://www.gexperts.org/download.html</a>. The package should be something like "GExperts for Delphi 6.02".<br>
+<br>
+ &nbsp;</p>
+<p>13. Install DevCpp_D6.dpk. (<strong>Note that this is the .dpk file in the source\Packages directory, not the .dpr file in source directory</strong>).<br>
+<br>
+ <img alt="" src="Build%20the%20wxDev-C++%20Development%20IDE%20%20%20wxDev-C++%20Archivos/Screen9.htm"><br>
+             <br>
+ 14. Install madCollection <a href="http://madshi.net/">http://madshi.net/</a> (not necessarily required)<br>
+<br>
+ Download the package from the link on the navigation bar on the left. 
+When installing, only madBasic and madExcept3 are required. The last 
+version known to work with our IDE was 2.5.4.0.<br>
+<br>
+ <img alt="" src="Build%20the%20wxDev-C++%20Development%20IDE%20%20%20wxDev-C++%20Archivos/madexcept.png"></p>
+<p> &nbsp;</p>
+<h1 style="margin-bottom: 0px">Building wxDev-C++</h1>
+<p>&nbsp;</p>
+<p><strong>Add the DEVCPPLIBS environment variable to Delphi's IDE options</strong>:
+ select "Tools-&gt;Environment options...", then the "Environment 
+Variables" tab, and under "User overrides" choose "New" and add variable
+ name DEVCPPLIBS pointing to the path were you installed the libraries 
+discussed avobe ($USERNAME\devcpp_libs or equivalent).&nbsp;</p>
+<p>Recently, the designer wx-related portion of wxDevC++ has been 
+refactored from the code in order to make a plugin out of it. Because of
+ this, the current sources contain 3 project files to work with, all of 
+them sharing the same sources files, so if you change something on one 
+project it will probably affect the others and so on.</p>
+<p>1-The first one, c:\wxdevcpp_root\wxdevcpp\source\devcpp.dpr, is used
+ to generate the "vanilla" devcpp, that is, wxdevcpp WITHOUT the 
+wx-designer or any wxWidgets related code. This executable is able to 
+load plugins, among them, the wx-designer one.</p>
+<p>2- The second project file, 
+c:\wxdevcpp_root\wxdevcpp\source\plugins\wxdsgn\wxdsgn.dpk generates the
+ wx-designer plugin binary, ready to be placed in a folder with the 
+following structure on the same directory as the previous devcpp.exe is 
+generated: plugins\wxdsgn\wxdsgn.bpl.</p>
+<p>&nbsp;</p>
+<p>3- The third project 
+file,&nbsp;c:\wxdevcpp_root\wxdevcpp\source\plugins\wxdsgn\wxdevcpp.dpr 
+has the whole package together, more or less like wxdevcpp used to be 
+until now. This one is the prefered for use during development, because 
+it allows for easier debugging. The executable should contain both the 
+IDE and the RAD (i.e. not as a plugin, but directly built into the 
+executable).&nbsp;</p>
+<p>After that, click on Project-&gt;Build devcpp. Once the build 
+finishes, it should write the binary of devcpp.exe in the directory 
+c:\wxdevcpp_root\wxdevcpp (or your equivalent). At this point you may 
+have one more problem when building the source.<br>
+<br>
+ Delphi may not find DBugIntf.pas in the GExperts directory (Step 12). 
+If you get a compile-time error that some files can't be found, then add
+ the directory to the project's search path.<br>
+<br>
+ Load the c:\wxdevcpp_root\wxdevcpp\source\devcpp.dpr project into 
+Delphi (just double-click on the Delphi Project file). Then click 
+Project-&gt;Options. A form pops up. Click on the tab that says 
+"Directories/Conditionals". Click on the <img alt="" style="null" src="Build%20the%20wxDev-C++%20Development%20IDE%20%20%20wxDev-C++%20Archivos/susp.jpg">
+ button button to the right of "Search path". Then, add the correct 
+directory to find the file that Delphi's telling you it can't find.</p>
+<p>Here's the list of directories:<br>
+<br>
+ packages<br>
+<br>
+ packages\parser<br>
+<br>
+ packages\codetooltip<br>
+<br>
+ components<br>
+<br>
+ $(DEVCPPLIBS)\extlib<br>
+<br>
+ $(DEVCPPLIBS)\fastmm<br>
+<br>
+ $(DEVCPPLIBS)\fastcode<br>
+<br>
+ $(DEVCPPLIBS)\GraphicEx<br>
+<br>
+ $(DEVCPPLIBS)\synedit\Source<br>
+<br>
+ $(DEVCPPLIBS)\theme<br>
+<br>
+ $(PROGRAMFILES)\GExperts for Delphi 6<br>
+<br>&nbsp;</p>
+<p>Also, note that if you need to remove a package for some reason, 
+Delphi isn't too smart about cleaning up. Theoretically, all you need to
+ do in Delphi is go to Component-&gt;Install Packages, click on the 
+package and then click "Remove". However, with 3rd party packages like 
+JCL/JVCL and ThemeManager, I find that the actual bpl files stick around
+ in the directory (they just aren't loaded into Delphi at runtime). So 
+you'll want to go to C:\Program Files\Borland\Delphi6\Projects\Bpl and 
+manually delete the files to truly uninstall. Very weird.</p>
+<p>&nbsp;</p>
+</div>
+      </div>
+              </div>
+    </td>
+      </tr>
+</tbody></table>
+
+<div id="footer">
+    </div>
+
+
+</body></html>

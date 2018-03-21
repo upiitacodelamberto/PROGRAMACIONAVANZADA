@@ -1,0 +1,298 @@
+
+Borland Delphi - getting, installing, configuring and using
+
+http://quark.sourceforge.net/infobase/src.delphi.html
+
+
+ 
+########################################################################
+########################################################################
+
+Build the wxDev-C++ Development IDE
+
+Tony Reina. Updated by Esteban Aguilar on June 2008
+
+wxdsgn.sourceforge.net/?q=node/22
+
+Tomado del url anterior:
+Build the wxDev-C++ Development IDE
+1. Download the latest wxDev-C++ source from SVN:
+
+SVN access via SourceForge
+All wxDev-C++ sources are kept on a Subversion repository on 
+SourceForge. You will need to download all the sources using a 
+SVN client (we use TortoiseSVN). Follow the SVN Access tutorial
+
+You will also need additional packages which are in the directory 
+called devcpp_libs.7z. The files can be downloaded from here. Unzip 
+these files to the top directory of your SVN checkout. They include 
+the Delphi packages for JEDI JCL/JVCL, SynEdit, ThemeManager, ExtLib, 
+GraphicEx, FastCode, and FastMM.
+
+2. Download and install Borland Delphi 6 Personal Edition.
+Delphi 6 PE is a free Pascal compiler and IDE offered by Delphi and 
+exists on several mirrors (although not on the official Borland site 
+anymore).
+
+If you can't find Delphi 6 PE, then you may need to search for 
+Delphi 7 PE and take note of the Delphi 7 tips in the rest of this 
+tutorial.
+
+
+To install, you'll need to register with Borland (registration is free) 
+and request a key to install. Go to 
+http://www.borland.com/products/downloads/download_delphi.html and 
+click on the "Keys Only, Personal, 6.0" link at the bottom of the page.
+
+The installer is usually built in the directory 
+C:\Program Files\Borland Delphi Personal Installer. You'll need to run 
+the file called "INSTALL.EXE".
+
+Notes for Delphi 7
+\begin{itemize}
+\item  The version 6 patches and updates do not apply, so do not try 
+to install these.
+\item  The oldest version of JVCL available now appears to be 3.39 
+Select the Delphi 7 tab.
+\item  Theme Manager is built in to Delphi 7, so do not try to install 
+this.
+\item  ExtLib_D6.dpk: There is no Delphi 7 version. On compile there 
+are 502 warnings, mostly for Unsafe Type.
+\item  SynEdit_D7_PE.dpk replaces SynEdit_D6_PE.dpk 
+\item  ClassBrowsing.dpk is at 
+[Subversion repository on SourceForge]\wxdsgn\wxdevcpp\source\packages\Parser. 
+On compile there are 415 warnings, mostly for Unsafe Type.
+\item    The GExperts file is GExperts for Delphi 7, file name is 
+GXD7-133.exe.
+\item    source/packages/DevCpp_D7.dpk replaces DevCpp_D6.dpk. 
+Error: cannot find DevCpp_D7.res. Recreated.
+\end{itemize}
+
+3. Download and install the Delphi 6 Personal Edition Update #2 
+(File D6_Upd2_per)
+
+NOTE: This is not needed for Delphi 7
+D6_Upd2_per.exe
+
+4. Download and install Delphi 6 Personal Edition Pascal RunTime 
+Library Patch #2 (File del6_per_rtl2)
+
+NOTE: This is not needed for Delphi 7
+del6_per_rtl2.exe
+
+5. Download and install Delphi 6 Personal Edition Pascal RunTime 
+Library Patch #3 (File del6per_rtl3).
+
+NOTE: This is not needed for Delphi 7
+Delphi6_RTL3.exe
+
+-Vista Only-
+If you're running Windows Vista, you need to give complete folder 
+permissions in the Delphi6 installation folder for "Everyone".
+
+<img>Vista_Delphi_6_Properties.png<img/>
+
+Also, if you're using 64bit version of Vista, you need to disable 
+Vista DEP feature for delphi: right click "computer" at the start 
+menu, select "Properties", then "Advanced system settings" on the 
+left tasks panel. After that choose "Settings" in the "Performace" 
+section of the dialog. There, add the Delphi6 executable to the 
+list of exceptions for DEP.
+
+<img>Vista_System_Properties.png<img/>
+
+Delphi6 and Vista don't play too well together, so expect some 
+problems from time to time. For example, it is probable that you 
+can't open the IDE by double-clicking a project file; you'll have 
+to open the IDE first and then select to open projects from there
+
+At this point, I would run Delphi 6 once and go through the 
+registration procedure. You essentially just need to get Delphi to 
+run once so that it sets up the environment variables.
+
+You should reboot Windows just to make sure that the Delphi 
+environment variables are visible to later installations.
+
+6. Install JEDI JCL and JVCL. Download release 3.33 of JVCL from 
+their website (newer versions "could" work). That package contains 
+both JCL and JVCL libraries required for wx-DevCpp. Create a folder 
+for shared libraries that you will not move around, for example 
+"$USERNAME\devcpp_libs" (where $USERNAME is the user's root folder), 
+and uncompress the zip there. Run the Install.bat file in the JCL 
+folder first (This shoud execute the JEDI installer). On the dialog, 
+select the "Delphi 6" tab and be sure to set both BPL and DCP paths to 
+"C:\Program Files\Borland\Delphi6\Projects\Bpl" or the equivalent 
+of your Delphi installation. Then choose "install".
+
+<img>JEDI_Installer.png<img/>
+
+Now run install.bat at the JVCL folder, and on the 3rd dialog on the 
+wizard, check the "Build Packages" option, and confirm that BPL and 
+DCP paths point to the same folder as they did with the JCL installer. 
+Then finish the wizard.
+
+<img>JVCL_3_Installation.png<img/>
+
+7. Download the devcpp_libs.7z package and extract it to the same 
+folder were you stored the JCL and JVCL libraries.
+
+8. Install Theme Manager from the wxDev-C++ source: 
+devcpp_libs\theme\Packages\ThemeManager6.dpk
+NOTE: This is not needed for Delphi 7
+
+Double-clicking on the DPK file opens Delphi 6 and loads the package. 
+A popup window should be displayed with the option to "Install" the 
+package.
+
+Click the compile button. Then click the install button and wait for 
+Delphi to verify that the package has been successfully installed. 
+Then simply exit Delphi and continue with the next step.
+
+Some explanations of Delphi file extensions (taken from the Emu Loader 
+website):
+
+.DPK
+
+A Delphi package file. It's used to define compilation configurations. 
+If you find this file or any component package, install from this file. 
+It's easier.
+
+.DPR
+
+A Delphi Project File. The main file for all Delphi projects. It 
+contains all of the files a project uses.
+
+.PAS
+
+This is where the lines of code are written. The format is in the 
+Pascal language.
+
+.DFM
+
+This file holds the forms (windows) used in the project, usually linked 
+to its .pas counterpart that has the same name. The default format is 
+in plain text.
+
+.DCU
+
+This is the compile generated unit. When you compile a project, this 
+file will be created for every file in the source code and for the 
+components. It works just like the C language, which also creates .obj 
+files.
+
+9. Install extlib from devcpp_libs\extlib\ExtLib_D6.dpk
+ 
+As with Theme Manager (step 8), Delphi 6 will start and load the 
+package. Just click on the install button in the popup window and wait 
+for Delphi to tell you that things successfully installed.
+
+
+10. Install SynEdit from devcpp_libs\synedit\Packages\SynEdit_D6_PE.dp
+
+11. Install Class Browser from packages\Parser\ClassBrowsing.dpk
+
+12. Install GExperts for Delphi 6 
+http://www.gexperts.org/download.html. The package should be something 
+like "GExperts for Delphi 6.02".
+
+13. Install DevCpp_D6.dpk. (Note that this is the .dpk file in the 
+source\Packages directory, not the .dpr file in source directory).
+
+14. Install madCollection http://madshi.net/ (not necessarily required)
+
+Download the package from the link on the navigation bar on the left. 
+When installing, only madBasic and madExcept3 are required. The last 
+version known to work with our IDE was 2.5.4.0.
+
+Building wxDev-C++
+
+Add the DEVCPPLIBS environment variable to Delphi's IDE options: 
+select "Tools->Environment options...", then the 
+"Environment Variables" tab, and under "User overrides" choose "New" 
+and add variable name DEVCPPLIBS pointing to the path were you 
+installed the libraries discussed avobe ($USERNAME\devcpp_libs or 
+equivalent).
+
+Recently, the designer wx-related portion of wxDevC++ has been 
+refactored from the code in order to make a plugin out of it. Because 
+of this, the current sources contain 3 project files to work with, all 
+of them sharing the same sources files, so if you change something on 
+one project it will probably affect the others and so on.
+
+1-The first one, c:\wxdevcpp_root\wxdevcpp\source\devcpp.dpr, is used to generate the "vanilla" devcpp, that is, wxdevcpp WITHOUT the wx-designer or any wxWidgets related code. This executable is able to load plugins, among them, the wx-designer one.
+
+2- The second project file, c:\wxdevcpp_root\wxdevcpp\source\plugins\wxdsgn\wxdsgn.dpk generates the wx-designer plugin binary, ready to be placed in a folder with the following structure on the same directory as the previous devcpp.exe is generated: plugins\wxdsgn\wxdsgn.bpl.
+
+3- The third project file, c:\wxdevcpp_root\wxdevcpp\source\plugins\wxdsgn\wxdevcpp.dpr has the whole package together, more or less like wxdevcpp used to be until now. This one is the prefered for use during development, because it allows for easier debugging. The executable should contain both the IDE and the RAD (i.e. not as a plugin, but directly built into the executable). 
+
+After that, click on Project->Build devcpp. Once the build finishes, it should write the binary of devcpp.exe in the directory c:\wxdevcpp_root\wxdevcpp (or your equivalent). At this point you may have one more problem when building the source.
+
+Delphi may not find DBugIntf.pas in the GExperts directory (Step 12). If you get a compile-time error that some files can't be found, then add the directory to the project's search path.
+
+Load the c:\wxdevcpp_root\wxdevcpp\source\devcpp.dpr project into 
+Delphi (just double-click on the Delphi Project file). Then click 
+Project->Options. A form pops up. Click on the tab that says 
+"Directories/Conditionals". Click on the <img>button.png<img/> button to the right of 
+"Search path". Then, add the correct directory to find the file that 
+Delphi's telling you it can't find.
+
+Here's the list of directories:
+
+packages
+
+packages\parser
+
+packages\codetooltip
+
+components
+
+$(DEVCPPLIBS)\extlib
+
+$(DEVCPPLIBS)\fastmm
+
+$(DEVCPPLIBS)\fastcode
+
+$(DEVCPPLIBS)\GraphicEx
+
+$(DEVCPPLIBS)\synedit\Source
+
+$(DEVCPPLIBS)\theme
+
+$(PROGRAMFILES)\GExperts for Delphi 6
+
+
+Also, note that if you need to remove a package for some reason, Delphi isn't too smart about cleaning up. Theoretically, all you need to do in Delphi is go to Component->Install Packages, click on the package and then click "Remove". However, with 3rd party packages like JCL/JVCL and ThemeManager, I find that the actual bpl files stick around in the directory (they just aren't loaded into Delphi at runtime). So you'll want to go to C:\Program Files\Borland\Delphi6\Projects\Bpl and manually delete the files to truly uninstall. Very weird.
+
+
+
+########################################################################
+########################################################################
+
+
+
+
+
+ wxdsgn-devs — Delphi related talks for the 
+wx-devcpp Development
+
+https://sourceforge.net/p/wxdsgn/mailman/wxdsgn-devs/?viewmonth=200704
+
+
+
+
+Orwell
+
+https://www.blogger.com/profile/05503630299391287150
+
+http://orwelldevcpp.blogspot.mx/
+
+
+
+REVISAR REVISAR REVISAR:
+https://stackoverflow.com/questions/38159920/can-delphi-6-be-installed-in-windows-10
+
+
+
+http://orwelldevcpp.blogspot.mx/2013/05/dev-c-542-released.html
+
+

@@ -1,0 +1,22 @@
+To: madshi@gmail.com
+
+Hello madshi
+
+I am a teacher. I work at Instituto Politécnico Nacional (México). At the moment, and for educational reasons, I am trying to build (from the sources in delphi) the IDE wxDev-C++ (an extension of Dev-C++ by Colin Laplace et al.). In order to do that, I am following the instructions of the tutorial at: 
+
+http://wxdsgn.sourceforge.net/?q=node/22
+
+where near the end of the tutorial, in the step 14, it literally says:
+
+"14. Install madCollection http://madshi.net/ (not necessarily required)
+Download the package from the link on the navigation bar on the left. When installing , only madBasic and madExcept3 are required. The last version known to work with our IDE was 2.5.4.0."
+
+So because of this, I think I need the version 2.5.4.0 of the installer. I would like you to send me this version of the madCollection installer, please.
+
+Kind regards
+
+Lamberto Maza Casas
+
+ 
+
+
