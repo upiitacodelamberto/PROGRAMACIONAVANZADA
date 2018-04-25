@@ -1,0 +1,30 @@
+program Project_MyArrayDemo;
+
+{$APPTYPE CONSOLE}
+
+uses
+  SysUtils;
+
+type
+  MyArrayType = array [1..5] of Real;
+
+var
+  PersonScores : MyArray;
+
+begin
+
+  PersonScores[1] := 55.6;
+  PersonScores[2] := 79.7;
+  PersonScores[3] := 42.2;
+  PersonScores[4] := 100.0;
+  PersonScores[5] := 34.9;
+
+  WriteLn(PersonScores[1]);
+  WriteLn(PersonScores[2]);
+  WriteLn(PersonScores[3]);
+  WriteLn(PersonScores[4]);
+  WriteLn(PersonScores[5]);
+
+  ReadLn {Para evitar el cierre de la ventana hasta oprimir enter}
+end.
+ 
