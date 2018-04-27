@@ -1,0 +1,22 @@
+program Project_ParamDemo;
+
+{$APPTYPE CONSOLE}
+
+uses
+  SysUtils;
+var
+  Number : Integer;
+
+procedure DoVerticals(HowMAnyTimes : Integer);
+  var Count : Integer;
+  begin
+    for Count := 1 to HowMAnyTimes do
+      WriteLn('   |   |   ');
+  end; {Procedure DoVerticals}
+
+begin
+  WriteLn('HOw many vertical lines would you like to print: ');
+  ReadLn(Number);
+  DoVerticals(Number);
+  ReadLn {evitar cierre hasta oprimir enter}
+end.
