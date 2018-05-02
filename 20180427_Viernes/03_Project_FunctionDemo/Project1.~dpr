@@ -1,0 +1,18 @@
+program Project1;
+
+{$APPTYPE CONSOLE}
+
+uses
+  SysUtils;
+
+Function Square(TheInput : Real);
+
+  begin
+    Square : = TheInput * TheInput;
+  end;
+
+var UserInput : Real;
+begin
+
+end.  {}
+ 
