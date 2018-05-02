@@ -1,0 +1,19 @@
+program Project_Apunrtadores;
+
+{$APPTYPE CONSOLE}
+
+uses
+  SysUtils;
+
+type IntPointer : ^Integer;
+var
+  IntPt : IntPointer;
+
+begin
+  New(IntPt);
+  IntPt^ := 3;
+  WriteLn('IntPt es ',IntPt^);
+  dispose(IntPt);
+  ReadLn { evitar cierre de ventana hasta oprimir Enter }
+end.
+ 
