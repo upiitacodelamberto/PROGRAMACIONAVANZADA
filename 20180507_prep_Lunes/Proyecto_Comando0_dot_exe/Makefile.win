@@ -1,0 +1,45 @@
+# Project: Project1
+# Makefile created by Dev-C++ 4.9.9.2 Built at I. P. N. (México) 2018.05.07.10.48
+
+CPP  = g++.exe
+CC   = gcc.exe
+WINDRES = windres.exe
+RES  = 
+OBJ  = comando0.o Directory_entry.o Pol_Directory.o Polinomio.o Rac.o String_Tokenizer.o $(RES)
+LINKOBJ  = comando0.o Directory_entry.o Pol_Directory.o Polinomio.o Rac.o String_Tokenizer.o $(RES)
+LIBS =   
+INCS = 
+CXXINCS = 
+BIN  = Project_Comando0_dot_exe.exe
+CXXFLAGS = $(CXXINCS)  
+CFLAGS = $(INCS)  
+RM = rm -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before Project_Comando0_dot_exe.exe all-after
+
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CPP) $(LINKOBJ) -o "Project_Comando0_dot_exe.exe" $(LIBS)
+
+comando0.o: comando0.cpp
+	$(CPP) -c comando0.cpp -o comando0.o $(CXXFLAGS)
+
+Directory_entry.o: Directory_entry.cpp
+	$(CPP) -c Directory_entry.cpp -o Directory_entry.o $(CXXFLAGS)
+
+Pol_Directory.o: Pol_Directory.cpp
+	$(CPP) -c Pol_Directory.cpp -o Pol_Directory.o $(CXXFLAGS)
+
+Polinomio.o: Polinomio.cpp
+	$(CPP) -c Polinomio.cpp -o Polinomio.o $(CXXFLAGS)
+
+Rac.o: Rac.cpp
+	$(CPP) -c Rac.cpp -o Rac.o $(CXXFLAGS)
+
+String_Tokenizer.o: String_Tokenizer.cpp
+	$(CPP) -c String_Tokenizer.cpp -o String_Tokenizer.o $(CXXFLAGS)

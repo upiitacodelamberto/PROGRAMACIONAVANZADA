@@ -1,0 +1,45 @@
+# Project: Project2
+# Makefile created by Dev-C++ 4.9.9.2 Built at I. P. N. (México) 2018.05.07.10.48
+
+CPP  = g++.exe
+CC   = gcc.exe
+WINDRES = windres.exe
+RES  = 
+OBJ  = Directory_entry.o Pol_Directory.o Polinomio.o Rac.o String_Tokenizer.o TestShell.o $(RES)
+LINKOBJ  = Directory_entry.o Pol_Directory.o Polinomio.o Rac.o String_Tokenizer.o TestShell.o $(RES)
+LIBS =   
+INCS = 
+CXXINCS = 
+BIN  = Proyecto_Shell_Operaciones_con_Polinomios.exe
+CXXFLAGS = $(CXXINCS)  
+CFLAGS = $(INCS)  
+RM = rm -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before Proyecto_Shell_Operaciones_con_Polinomios.exe all-after
+
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CPP) $(LINKOBJ) -o "Proyecto_Shell_Operaciones_con_Polinomios.exe" $(LIBS)
+
+Directory_entry.o: Directory_entry.cpp
+	$(CPP) -c Directory_entry.cpp -o Directory_entry.o $(CXXFLAGS)
+
+Pol_Directory.o: Pol_Directory.cpp
+	$(CPP) -c Pol_Directory.cpp -o Pol_Directory.o $(CXXFLAGS)
+
+Polinomio.o: Polinomio.cpp
+	$(CPP) -c Polinomio.cpp -o Polinomio.o $(CXXFLAGS)
+
+Rac.o: Rac.cpp
+	$(CPP) -c Rac.cpp -o Rac.o $(CXXFLAGS)
+
+String_Tokenizer.o: String_Tokenizer.cpp
+	$(CPP) -c String_Tokenizer.cpp -o String_Tokenizer.o $(CXXFLAGS)
+
+TestShell.o: TestShell.cpp
+	$(CPP) -c TestShell.cpp -o TestShell.o $(CXXFLAGS)

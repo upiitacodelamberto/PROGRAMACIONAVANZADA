@@ -1,0 +1,30 @@
+# Project: Project2
+# Makefile created by Dev-C++ 4.9.9.2 Built at I. P. N. (México) 2018.05.07.10.48
+
+CPP  = g++.exe
+CC   = gcc.exe
+WINDRES = windres.exe
+RES  = 
+OBJ  = myshell.o $(RES)
+LINKOBJ  = myshell.o $(RES)
+LIBS =   
+INCS = 
+CXXINCS = 
+BIN  = Project_MyShell.exe
+CXXFLAGS = $(CXXINCS)  
+CFLAGS = $(INCS)  
+RM = rm -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before Project_MyShell.exe all-after
+
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CPP) $(LINKOBJ) -o "Project_MyShell.exe" $(LIBS)
+
+myshell.o: myshell.c
+	$(CPP) -c myshell.c -o myshell.o $(CXXFLAGS)
