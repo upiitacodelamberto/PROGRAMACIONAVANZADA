@@ -1,0 +1,49 @@
+Unidad 1: Programacion Orientada a Objetos
+Clases:Objetos:Herencia:Polimorfismo:Abstraccion:
+1.2.1: Atributos
+
+1.2.2: Metodos
+
+Unidad 2: Interfaz Grafica de Usuario
+Ambiente de desarrollo:Controles basicos (formas, botones y etiquetas):Controles avanzados:Eventos:
+2.1.1: Areas de trabajo y barra de menus
+
+2.1.2: Crear y compilar un proyecto
+
+2.3.1: Control ListBox y ComboBox
+
+2.3.2: Cuadros de Dialogo
+
+2.4.1: Evento Clic, OnChange, OnEnter, OnExit
+
+2.4.2: Evento OnTimer, OnMouseDown, OnMouseUp
+
+2.4.3: Evento OnKeyPress, Evento OnKeyUp, OnKeyDown
+
+Unidad 3: Puertos y comunicaciones
+Puerto serie:Puerto USB:Comunicacion TCP/IP:
+3.1.1: Principio de funcionamiento, Abrir comunicacion
+
+3.1.2: Configuracion de la comunicacion serie
+
+3.1.3: Transferir datos, Recibir datos
+
+3.2.1: Caracteristicas del puerto USB, Teoria de operacion
+
+3.2.2: Controladores y bibliotecas dinamicas
+
+3.2.3: Implementacion
+
+3.3.1: Crear socket, Asociar un Socket
+
+3.3.2: Escuchar Conectar
+
+Unidad 4: Adquisicion de imagenes
+Adquisicion de imagenes:
+4.1.1: Crear ventana de captura
+
+4.1.2: Conectar el controlador
+
+4.1.3: Vista previa
+
+4.1.4: Capturar una imagen, manipular pixeles
